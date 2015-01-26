@@ -1,0 +1,2591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Make your own website with donation functionality and optional event calendar and map. Quick, easy, and free.">
+    <link rel="shortcut icon" href="static/img/favicon.png">
+    <base target="_blank">
+
+    <title>Nonprofit Website Builder</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.3/fullcalendar.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.3/fullcalendar.print.css" rel="stylesheet" media='print'>
+    <link href="static/css/summernote.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="static/css/sitebuilder.css"/>
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link id='orgfont' href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link id='showfont' href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <link id="bodyfont" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+
+    <!-- jQuery / Backstretch / Calendar / Summernote -->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.3/fullcalendar.min.js"></script>
+    <script src="static/js/gcal.js"></script>
+    <script src="static/js/summernote.min.js"></script>
+    <script src="static/js/colpick.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.5.7/perfect-scrollbar.min.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>@media(min-width:768px){.navbar-transp{background:none!important;}}</style>
+    <style id="shadow">.intro-heading{text-shadow: 1px 1px 5px #000}</style>
+    <style id="textcase">h1,h2,h4,h5,h6,.btn-danger,.btn-primary,.btn-2,.navbar-default .nav li a,header .intro-text .intro-heading{text-transform:uppercase}</style>
+    <style id="fontweight">h1,h2,h4,h5,h6,.btn-primary,.btn-2,.navbar-default .nav li a,header .intro-text .intro-heading{font-weight:700}</style>
+    <style id="navsecactive">.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:active,.navbar-default .navbar-brand.active{color:#fed136!important}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus,.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav > .active > a:focus{background-color:#fed136}::-moz-selection{text-shadow:none;background:#fed136}::selection{text-shadow:none;background:#fed136}section#contact .form-control:focus{border-color:#fed136;box-shadow:none}</style>
+    <style id="orgfontstyle">.navbar-default .navbar-brand{font-family:'Kaushan Script','sans-serif';color:#E43434}</style>
+    <style id="showfontstyle">h1,h2,h4,h5,h6,.btn-danger,.btn-primary,.btn-2,.navbar-default .nav li a,header .intro-text .intro-heading{text-transform:uppercase;font-family:'Open Sans','Helvetica Neue','sans-serif';font-weight:700}footer span.copyright,footer a.quicklink{font-family:'Open Sans','Helvetica Neue','sans-serif'}</style>
+    <style id="bodyfontstyle">body,section h3.section-subheading{font-family:'Open Sans','sans-serif'}</style>
+    <style id='fontsizestyle'>.contactboxes p{font-size:16px}#about p{font-size:14px}section h3.section-subheading{margin-bottom:35px;text-transform:none;font-size:15px;font-style:italic;font-weight:400}section#contact .form-group input,section#contact .form-group textarea{padding:20px;font-size:15px;background:rgba(40,40,40,0.85);color:#D1D1D1}</style>
+    <style id="barcolorstyle"></style>
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-transp">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top"><span id="bicon" class="fa fa-leaf"></span> <span id="orgname">Environmental Organization</span></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a></li>
+                    <li><a class="page-scroll summernote" href="#about">About</a></li>
+                    <li id="eventnav"><a class="page-scroll summernote" href="#events">Events</a></li>
+                    <li><a class="page-scroll summernote" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-heading summernote"><h1>Let's cut our footprint, not our forests</h1></div>
+                <a href="#about" class="btny btn-2 page-scroll" style="color:#fff;text-decoration:none">Read More</a>
+                <button class="btny btn-2" data-toggle="modal" data-target="#DonateModal">Donate</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading summernote"><h2>About Us</h2></div>
+                    <h3 class="section-subheading text-muted summernote">Please get in touch to learn more. We'd love to chat!</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <div class="summernote"><p>Write a bit about your organization and the work you do. Try highlighting a bit of text here to bring up a window with more options. You can center this text, change the color, insert an image, embed a video, and more! If the window doesn't close, just press escape. If you make a mistake, right click the text and select 'undo.' If you find any bugs, have any suggestions that might make this tool more useful, or just want to say hello, send me a message via the contact form below.</p>
+                    <p>Want to insert an image? Please make sure it's optimized for the web before doing so. You can use <a href="http://www.ico2png.com/jpeg-optimizer/">this site</a> or <a href="http://www.jpeg-optimizer.com/">this site</a>.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Events Section -->
+    <section id="events">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading summernote"><h2>Upcoming Events</h2></div>
+                </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="row" style="margin-bottom:50px;">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading summernote"><h2>Contact</h2></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Subject *" id="subject" required data-validation-required-message="Please enter a subject.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button type="submit" class="btny btn-2" style="margin-top: 30px;"><i class="fa fa-envelope-o"></i> Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row contactboxes text-center">
+                <div class="col-md-4" id="box-1">
+                    <i class="fa fa-phone"></i>
+                        <p class="summernote">(999) 999-9999</p>
+                </div>
+                <div class="col-md-4" id="box-2">
+                    <i class="fa fa-home"></i>
+                        <div class="summernote"><p>999 Your Address</p>
+                        <p>City, State 99999</p></div>
+                </div>
+                <div class="col-md-4" id="box-3">
+                    <i class="fa fa-envelope"></i>
+                        <p class="summernote">you@youremail.com</p>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="map"></section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; <span id="orgnamecopyright">Your Organization</span> 2015</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li id="facebook"><a href="https://www.facebook.com/DoctorWho"><i class="fa fa-facebook-square" ></i></a></li>
+                        <li id="youtube"><a href="https://www.youtube.com/user/doctorwho"><i class="fa fa-youtube-square"></i></a></li>
+                        <li id="twitter"><a href="https://twitter.com/bbcdoctorwho"><i class="fa fa-twitter-square"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <a class="quicklink" href="https://henrygd.me/makeawebsite" style="color:#DA4A3E">Make your own nonprofit site free!</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<!-- options icon -->
+<div id="optionsicon">
+  <button id="optionstoggle">
+    <i class="fa fa-cogs fa-2x" ></i>
+  </button>
+</div>
+
+<div id="expandicon" style="display:none">
+  <button id="expandtoggle">
+    <i class="fa fa-angle-double-left fa-2x"></i>
+  </button>
+  <button id="collapsetoggle" style="display:none">
+    <i class="fa fa-angle-double-right fa-2x"></i>
+  </button>
+</div>
+
+<div id="closeicon" style="display:none">
+  <button id="closetoggle">
+    <i class="fa fa-times fa-2x"></i>
+  </button>
+</div>
+
+<!-- loading icon (fontawesome) -->
+<div id="loadingpin">
+    <div id="loading"><i class="fa fa-spinner fa-3x fa-spin"></i></div>
+</div>
+
+<!-- sidebar -->
+<div id="right-panel" class="sidepanel">
+
+<!-- load / save buttons -->
+    <div id="loadsavediv">
+        <button id ="savedata" class="btn btn-xl" onclick="updatescrollbar();confirmsaveload('save')"><i class="fa fa-floppy-o"></i></button>
+        <button id ="loaddata" class="btn btn-xl" onclick="updatescrollbar();confirmsaveload('load')"><i class="fa fa-undo"></i></button>
+    </div>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseZero" data-parent="#accordion" aria-expanded="true" aria-controls="collapseZero">
+      <div class="panel-heading" role="tab" id="headingZero">
+        <h4 class="panel-title">
+          <i class="fa fa-smile-o"></i> Welcome!
+        </h4>
+      </div>
+    </a>
+    <div id="collapseZero" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingZero">
+      <div class="panel-body">
+        <p>The green buttons in the upper right corner allow you to save or load your changes. You will still be able to load your save even if you want to stop and continue another day.</p>
+        <p>To get things started, enter the name of your organization in the field below and click the button underneath to choose a logo (top left). You can change the color later. From there, you may start wherever you'd like. Edit the text to the left, or check out the other options panels below this one.</p>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+            <input type="text" class="form-control" id='orgnameinput' placeholder="Your organization">
+        </div>
+        <button class="btn btn-xl" data-toggle="modal" data-target="#iconModal" style="margin-top:2px">Choose Logo</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseOne" data-parent="#accordion" aria-expanded="true" aria-controls="collapseOne">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <i class="fa fa-desktop"></i> Background
+          </h4>
+        </div>
+      </a>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+        <div class="btn-group" data-toggle="buttons" style="margin-bottom:5px">
+          <label class="btn btn-primary active">
+            <input type="radio" name="backoptions" id="photoback" checked> Photo
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="backoptions" id="gradientback"> Gradient
+          </label>
+        </div>
+        <div id="photosec">
+            <p class="highlight">Check out the predefined gradients by clicking the button above. These require no setup!</p>
+            <p>To use a background image, sign up for a free account at Cloudinary, upload and optimize your image, and paste the link in the field below.
+            <a data-toggle="modal" data-target="#CloudinaryModal" style="cursor:pointer">Click here for instructions.</a></p>
+            <div class="input-group" style="margin-top:5px">
+                <span class="input-group-addon"><i class="fa fa-picture-o"></i></span>
+                <input type="text" class="form-control" id="custimage" placeholder="https://res.cloudinary.com/henrygd/image/upload/v1410680381/chuck.jpg">
+            </div>
+        <button class="btn btn-xl" id='testimage'>Test Image</button>
+        <p>Not working? If you're not using Cloudinary, your link may not be <code>https://</code> compatible.
+        </p>
+        </div>
+        <div id="gradientsec">
+            <select id="gradients" class="form-control" style="margin-bottom:5px">
+              <option value="alostmemory">A Lost Memory</option>
+              <option value="Mystic">Mystic</option>
+              <option value="Ash">Ash</option>
+              <option value="BloodyMary">Bloody Mary</option>
+              <option value="midnightcity">Midnight City</option>
+              <option value="starfall">Starfall</option>
+              <option value="Aubergine">Aubergine</option>
+              <option value="endlessriver">Endless River</option>
+              <option value="Sunrise">Sunrise</option>
+              <option value="kokocaramel">Koko Caramel</option>
+              <option value="SeaBlizz">Sea Blizz</option>
+              <option value="Amethyst">Amethyst</option>
+              <option value="Cherry">Cherry</option>
+              <option value="Clouds">Clouds</option>
+              <option value="Mojito">Mojito</option>
+              <option value="Influenza">Influenza</option>
+            </select>
+            <p class="highlight">Background gradients look nice and load more quickly than images. Make sure you scroll to the top to see the true color. Select options from
+            the dropdown field above. You can change the tint of page sections (or remove the section or tint entirely) further down in the options panel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseFont" data-parent="#accordion" aria-expanded="true" aria-controls="collapseFont">
+      <div class="panel-heading" role="tab" id="headingFont">
+        <h4 class="panel-title">
+          <i class="fa fa-font"></i> Fonts
+        </h4>
+      </div>
+    </a>
+    <div id="collapseFont" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFont">
+      <div class="panel-body">
+        <h4 style="margin-top:3px">Presets <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Find a nice combo? Let me know and I'll add it!."></i></h4>
+        <select id="fontpresets" class="form-control">
+          <option value="default">Default</option>
+          <option value="fun">Fun</option>
+          <option value="serious">Serif</option>
+        </select>
+        <h4>Organization font</h4>
+        <select id="orgfonts" class="form-control">
+          <option value="Kaushan Script">Kaushan Script</option>
+          <option value="Roboto Slab">Roboto Slab</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Voltaire">Voltaire</option>
+          <option value="Indie Flower">Indie Flower</option>
+          <option value="Open Sans">Open Sans</option>
+          <option value="Pacifico">Pacifico</option>
+          <option value="Overlock">Overlock</option>
+          <option value="Chewy">Chewy</option>
+          <option value="Oswald">Oswald</option>
+          <option value="Vollkorn">Vollkorn</option>
+          <option value="Bangers">Bangers</option>
+          <option value="Alegreya">Alegreya</option>
+          <option value="Lobster">Lobster</option>
+          <option value="Playfair Display SC">Playfair Display SC</option>
+          <option value="Cuprum">Cuprum</option>
+          <option value="Abril Fatface">Abril Fatface</option>
+        </select>
+        <h4 style="margin-bottom: -2px;">Showcase font</h4>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="boldcheckbox" checked> Bold
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="uppercasecheckbox" checked> Uppercase
+        </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="shadowcheckbox" checked> Shadow
+        </label>
+        <select id="showfonts" class="form-control" style="margin-top: 3px;">
+          <option value="Open Sans">Open Sans</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Kaushan Script">Kaushan Script</option>
+          <option value="Roboto Slab">Roboto Slab</option>
+          <option value="Voltaire">Voltaire</option>
+          <option value="Indie Flower">Indie Flower</option>
+          <option value="Pacifico">Pacifico</option>
+          <option value="Overlock">Overlock</option>
+          <option value="Chewy">Chewy</option>
+          <option value="Oswald">Oswald</option>
+          <option value="Vollkorn">Vollkorn</option>
+          <option value="Bangers">Bangers</option>
+          <option value="Alegreya">Alegreya</option>
+          <option value="Lobster">Lobster</option>
+          <option value="Playfair Display SC">Playfair Display SC</option>
+          <option value="Cuprum">Cuprum</option>
+          <option value="Abril Fatface">Abril Fatface</option>
+        </select>
+        <h4>Body font</h4>
+        <div class="fontsize">
+            <button id="minus" class="fa fa-minus"></button>
+            <button id="plus" class="fa fa-plus"></button>
+        </div>
+        <select id="bodyfonts" class="form-control">
+          <option value="Open Sans">Open Sans</option>
+          <option value="Roboto Slab">Roboto Slab</option>
+          <option value="Montserrat">Montserrat</option>
+          <option value="Kaushan Script">Kaushan Script</option>
+          <option value="Voltaire">Voltaire</option>
+          <option value="Indie Flower">Indie Flower</option>
+          <option value="Pacifico">Pacifico</option>
+          <option value="Overlock">Overlock</option>
+          <option value="Chewy">Chewy</option>
+          <option value="Oswald">Oswald</option>
+          <option value="Vollkorn">Vollkorn</option>
+          <option value="Bangers">Bangers</option>
+          <option value="Alegreya">Alegreya</option>
+          <option value="Lobster">Lobster</option>
+          <option value="Playfair Display SC">Playfair Display SC</option>
+          <option value="Cuprum">Cuprum</option>
+          <option value="Abril Fatface">Abril Fatface</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseTwo" data-parent="#accordion" aria-expanded="true" aria-controls="collapseTwo">
+      <div class="panel-heading" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+          <i class="fa fa-paint-brush"></i> Colors
+        </h4>
+      </div>
+    </a>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+      <div class="highlight">
+       <p>Top bar color (scroll down a bit)</p>
+        <div class="btn-group btnradio" data-toggle="buttons">
+          <label class="btn btn-primary active">
+            <input type="radio" name="options" id="gradientbar" checked> Gradient
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="solidbar"> Solid Color
+          </label>
+        </div>
+       <div class="color-box" style="margin-top:-10px"></div>
+        <select id="bargradients" class="form-control" style="margin-top:-8px">
+            <option value="midnightcity">Midnight City</option>
+            <option value="BloodyMary">Bloody Mary</option>
+            <option value="alostmemory">A Lost Memory</option>
+            <option value="Mystic">Mystic</option>
+            <option value="Ash">Ash</option>
+            <option value="starfall">Starfall</option>
+            <option value="Aubergine">Aubergine</option>
+            <option value="endlessriver">Endless River</option>
+            <option value="Sunrise">Sunrise</option>
+            <option value="kokocaramel">Koko Caramel</option>
+            <option value="SeaBlizz">Sea Blizz</option>
+            <option value="Amethyst">Amethyst</option>
+            <option value="Cherry">Cherry</option>
+            <option value="Clouds">Clouds</option>
+            <option value="Mojito">Mojito</option>
+            <option value="Influenza">Influenza</option>
+        </select>
+        </div>
+            <div class="color-box-bicon">Logo color</div>
+            <div class="color-box-bartext">Top bar text</div>
+            <div class="color-box-navhighlight">Top bar section highlight <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="The color on the top bar that indicates what section you're in. This options panel will close so you can see the color change clearly. This box also sets the text selection color."></i></div>
+            <div class="color-box-introtext">Main heading text</div>
+            <div class="color-box-btns">Button color</div>
+            <div class="color-box-btnsecond">Button secondary</div>
+            <div class="color-box-link">Inline link color <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="top" title="Changes color of any plain text links you add in the about section. You may not have any and that's fine."></i></div>
+            <div class="color-box-about-tint">About section background tint</div>
+            <select id="aboutgradients" class="form-control sectiongradient" style="display:none">
+                <option value="BloodyMary">Bloody Mary</option>
+                <option value="midnightcity">Midnight City</option>
+                <option value="alostmemory">A Lost Memory</option>
+                <option value="Mystic">Mystic</option>
+                <option value="Ash">Ash</option>
+                <option value="starfall">Starfall</option>
+                <option value="Aubergine">Aubergine</option>
+                <option value="endlessriver">Endless River</option>
+                <option value="Sunrise">Sunrise</option>
+                <option value="kokocaramel">Koko Caramel</option>
+                <option value="SeaBlizz">Sea Blizz</option>
+                <option value="Amethyst">Amethyst</option>
+                <option value="Cherry">Cherry</option>
+                <option value="Clouds">Clouds</option>
+                <option value="Mojito">Mojito</option>
+                <option value="Influenza">Influenza</option>
+            </select>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="abouttrasp" onchange="transparent('#abouttrasp','about')"> Transparent
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="aboutgrad" onchange="sectiongradient('#aboutgrad','#aboutgradients','about')"> Gradient
+            </label>
+            <div class="color-box-events-tint" style="margin-top:0">Event section background tint</div>
+            <select id="eventsgradients" class="form-control sectiongradient" style="display:none">
+                <option value="Cherry">Cherry</option>
+                <option value="midnightcity">Midnight City</option>
+                <option value="alostmemory">A Lost Memory</option>
+                <option value="Mystic">Mystic</option>
+                <option value="Ash">Ash</option>
+                <option value="BloodyMary">Bloody Mary</option>
+                <option value="starfall">Starfall</option>
+                <option value="Aubergine">Aubergine</option>
+                <option value="endlessriver">Endless River</option>
+                <option value="Sunrise">Sunrise</option>
+                <option value="kokocaramel">Koko Caramel</option>
+                <option value="SeaBlizz">Sea Blizz</option>
+                <option value="Amethyst">Amethyst</option>
+                <option value="Clouds">Clouds</option>
+                <option value="Mojito">Mojito</option>
+                <option value="Influenza">Influenza</option>
+            </select>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="eventstrasp" onchange="transparent('#eventstrasp','events')"> Transparent
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="eventsgrad" onchange="sectiongradient('#eventsgrad','#eventsgradients','events')"> Gradient
+            </label>
+            <div class="color-box-contact-tint" style="margin-top:0">Contact section background tint</div>
+            <select id="contactgradients" class="form-control sectiongradient" style="display:none">
+                <option value="starfall">Starfall</option>
+                <option value="midnightcity">Midnight City</option>
+                <option value="alostmemory">A Lost Memory</option>
+                <option value="Mystic">Mystic</option>
+                <option value="Ash">Ash</option>
+                <option value="BloodyMary">Bloody Mary</option>
+                <option value="Aubergine">Aubergine</option>
+                <option value="endlessriver">Endless River</option>
+                <option value="Sunrise">Sunrise</option>
+                <option value="kokocaramel">Koko Caramel</option>
+                <option value="SeaBlizz">Sea Blizz</option>
+                <option value="Amethyst">Amethyst</option>
+                <option value="Cherry">Cherry</option>
+                <option value="Clouds">Clouds</option>
+                <option value="Mojito">Mojito</option>
+                <option value="Influenza">Influenza</option>
+            </select>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="contacttrasp" onchange="transparent('#contacttrasp','contact')"> Transparent
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" id="contactgrad" onchange="sectiongradient('#contactgrad','#contactgradients','contact')"> Gradient
+            </label>
+        <div class="color-box-cicon" style="margin-top:0">Contact section icons</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseThree" data-parent="#accordion" aria-expanded="true" aria-controls="collapseThree">
+      <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <i class="fa fa-calendar"></i> Calendar
+          </h4>
+      </div>
+    </a>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-event" checked>
+            <label class="onoffswitch-label" for="toggle-event">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <div id="eventcont">
+            <p>This map can display events from a public <a href='http://calendar.google.com/'>Google Calendar</a>, so that's where you will add your events if you have the calendar enabled. <a data-toggle="modal" data-target="#CalendarModal" style="cursor:pointer">Click here for set up instructions.</a></p>
+            <p>When finished, paste your Calendar API in the first field, and Calendar ID in the second field below.</p>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-google"></i></span>
+                <input type="text" class="form-control" id="cal_api" placeholder="AIzaSyBPuckaKCANTKg3IUh-v6MVZSFTf4PtXqs">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-google"></i></span>
+                <input type="text" class="form-control" id="cal_id" placeholder="randomstuff@group.calendar.google.com">
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseFour" data-parent="#accordion" aria-expanded="true" aria-controls="collapseFour">
+      <div class="panel-heading" role="tab" id="headingFour">
+        <h4 class="panel-title">
+          <i class="fa fa-envelope-o"></i> Contact Form
+        </h4>
+      </div>
+    </a>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+        <p>Register at <a href="https://mandrill.com/">Mandrill</a> to get an API key, then set restrictions so that it can only send messages.
+        <a data-toggle="modal" data-target="#MandrillModal" style="cursor:pointer">Click here for instructions.</a></p>
+        <p>In the field below, enter your Mandrill API key.</p>
+        <p>You will receive messages at the email address entered on the main page to the left.</p>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+            <input id="mandrill_api" type="text" class="form-control" placeholder="5zFFwXjElYmZ_aDTWJfvNA">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseFive" data-parent="#accordion" aria-expanded="true" aria-controls="collapseFive">
+      <div class="panel-heading" role="tab" id="headingFive">
+        <h4 class="panel-title">
+          <i class="fa fa-globe"></i> Map
+        </h4>
+      </div>
+    </a>
+    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+      <div class="panel-body">
+        <div class="onoffswitch">
+            <input onclick='updatescrollbar()' type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="toggle-map" checked>
+            <label class="onoffswitch-label" for="toggle-map">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <div id="mapcont">
+            <p>The map needs to be centered on your location. To accomplish this, simply drag the marker on the map to the location you want.</p>
+            <p>You may use the button below to move the marker to your current location -- or at least your current general area. This will not work in all browsers.</p>
+            <div class="hide">
+                <input type="text" id="latitude" value="39">
+                <input type="text" id="longitude" value="-95">
+                <button id="update-map"></button>
+            </div>
+            <button class="btn btn-xl" onclick="getLocation()"><i class="fa fa-crosshairs"></i> Current Location</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseDonate" data-parent="#accordion" aria-expanded="true" aria-controls="collapseDonate">
+      <div class="panel-heading" role="tab" id="headingDonate">
+        <h4 class="panel-title">
+          <i class="fa fa-credit-card"></i> Donations
+        </h4>
+      </div>
+    </a>
+    <div id="collapseDonate" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDonate">
+      <div class="panel-body">
+        <p>We will use <a href="https://stripe.com/">Stripe</a> as the donation processor. Stripe has no history of shady behavior, no monthly fees,
+         and the <a href="https://stripe.com/us/pricing">percentage cost per transaction</a> is very reasonable. They are also developer friendly,
+         which means we can allow users to pay through a slick, straightforward, custom interface without ever leaving the site.</p>
+         <p>You will have to enter your website address when signing up. If you don't want to use a .com or .org domain ($10 to $12/year), sign at <a href="https://github.com/">GitHub.com</a> using your organization name as your username, then enter 
+         <code>https://you.github.io</code> on Stripe- replacing <code>you</code> with your GitHub username.</p>
+         <p class="highlight">If you do want to buy a .com or .org (I strongly recommend doing so),
+         <a href="https://www.namecheap.com/?aff=77472">Namecheap</a> is the best option, and is what I use. Click the link, search for your domain, buy it, and use your new address for the Stripe sign up. Setting up your new domain through Namecheap is easy and I will walk you through it later!</p>
+        <p>After you've signed up on Stripe, copy your publishable API key (not the test keys or the secret key) and paste in the field below. Make sure it is the LIVE PUBLISHABLE KEY (matches the format below) or donations WILL NOT WORK.</p>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-key"></i></span>
+            <input id="stripepk" type="text" class="form-control" placeholder="pk_live_Ri2pqHwY3t7CqPZNnIrlWsuY">
+        </div>
+        <p style="margin-top:7px">Lastly, go to the <a href="https://henrygd.me/stripeserver">server page</a> I set up for these donations, enter and verify your publishable and secret LIVE API keys. The live keys, like the one you entered above -- NOT the test keys. Don't worry about the other instructions on the page; everything will be set up automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseSix" data-parent="#accordion" aria-expanded="true" aria-controls="collapseSix">
+      <div class="panel-heading" role="tab" id="headingSix">
+        <h4 class="panel-title">
+          <i class="fa fa-comments-o"></i> Social
+        </h4>
+      </div>
+    </a>
+    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+      <div class="panel-body">
+        <p>Social links are included at the bottom of the page. If you'd like to link to your accounts, please copy your URL address and paste over the the examples below. Make sure you've entered a full link, like the examples. Not just your username.</p>
+        <p>If you leave a field alone, the icon will not be displayed on your site.</p>
+        <div class="input-group">
+        <span class="input-group-addon" style="background:#3B5999"><i class="fa fa-facebook-square"></i></span>
+        <input id="faceb" type="text" class="form-control" placeholder="https://www.facebook.com/DoctorWho">
+        </div>
+        <div class="input-group">
+        <span class="input-group-addon" style="background:#00C9CA"><i class="fa fa-twitter-square"></i></span>
+        <input id="twit" type="text" class="form-control" placeholder="https://twitter.com/bbcdoctorwho">
+        </div>
+        <div class="input-group">
+        <span class="input-group-addon" style="background:#D52020"><i class="fa fa-youtube-square"></i></span>
+        <input id="yout" type="text" class="form-control" placeholder="https://www.youtube.com/user/doctorwho">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <a onclick='updatescrollbar()' class="collapsed" data-toggle="collapse" href="#collapseSeven" data-parent="#accordion" aria-expanded="true" aria-controls="collapseSeven">
+      <div class="panel-heading" role="tab" id="headingSeven">
+        <h4 class="panel-title">
+          <i class="fa fa-download"></i> Preview &amp; Download
+        </h4>
+      </div>
+    </a>
+    <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+      <div class="panel-body">
+        <p>Preview your site by clicking the button below, then download it using the button at the bottom. Make sure you've double checked everything. You might want to send yourself a message from the preview window to make sure the contact form works.</p>
+        <button id ="testbtn" class="btn btn-xl centerbutton"><i class="fa fa-wrench"></i> Preview</button>
+        <button id ="downloadbtn" class="btn btn-xl centerbutton" style="margin:4px 0px 7px"><i class="fa fa-download"></i> Download</button>
+        <p class="highlight">Hosting instructions will appear after you click the download button.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="confirmsave" style="display:none">
+    <p>Are you sure you want to</p>
+    <p style="font-size:31px">SAVE?</p>
+    <p>THIS WILL OVERWRITE ALL PREVIOUS SAVES</p>
+    <button id="confirmsavebutton">Yes</button><button id="cancelsavebutton" onclick='updatescrollbar();cancelsaveload("save")'>No</button>
+</div>
+<div id="saveconfirmed" style="display:none;font-size:22px;">SAVE SUCCESSFUL!</div>
+
+<div id="confirmload" style="display:none">
+    <p>Are you sure you want to</p>
+    <p style="font-size:31px">LOAD?</p>
+    <p>YOU WILL LOSE ANY CHANGES MADE SINCE YOUR LAST SAVE</p>
+    <button id="confirmloadbutton">Yes</button><button id="cancelloadbutton" onclick='updatescrollbar();cancelsaveload("load")'>No</button>
+</div>
+
+</div>
+
+<!-- hello modal -->
+<div class="modal" id="hiModal" tabindex="-1" role="dialog" aria-labelledby="Intro" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="Intro">Thanks for visiting!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Using this tool, you can make your own website with donation functionality and optional event calendar and map. It's completely free, and you own the website you download -- no catch. I've also included instructions on how to host your website 100% free (free as in free, unlike Wix and other services that advertise as free yet charge steep monthly fees or run invasive ads on your site), so you will be able to have your site online even if you know nothing about the Internet.</p>
+        <h4>The basics:</h4>
+        <p>This is an example page. Customize it however you'd like.</p>
+        <p>Press the button on the lower right of the page to toggle the options panel.</p>
+        <p>Most of the text on the main page is directly editable. Just click on it.</p>
+        <p>Good luck!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- bye modal -->
+<div class="modal" id="byeModal" tabindex="-1" role="dialog" aria-labelledby="Bye" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="Bye">Thanks for visiting!</h4>
+      </div>
+      <div class="modal-body">
+        <p>Thank you for using this thing, I hope you're happy with the result! If you found any bugs or have any recommendations, please let me know.</p>
+        <h2 style="text-align:center">Hosting Instructions</h2>
+        <div class="row" style="text-align:center;padding: 8px 0 15px">
+            <div class="col-md-4 col-md-offset-1"><a data-toggle="modal" data-target="#GitHubModal" style="cursor:pointer">Free hosting through GitHub Pages (you.github.io URL)</a></div>
+            <div class="col-md-2">OR</div>
+            <div class="col-md-4"><a data-toggle="modal" data-target="#DotComModal" style="cursor:pointer">Set up a .org / .com through Namecheap and GitHub</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- donation modal -->
+<div class="modal fade" id="DonateModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+            <input type="text" class="form-control" id='donatethis' placeholder="Enter donation amount">
+        </div>
+      </div>
+      <div class="modal-footer" style="border-top:none">
+        <button type="button" class="btny btn-2 donatebutton" data-dismiss="modal" id="customButton">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- donation thanks modal -->
+<div class="modal fade" id="ThanksModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body">
+        <div id="resultinfo"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- calendar modal -->
+<div class="modal fade" id="CalendarModal" tabindex="-1" role="dialog" aria-labelledby="CalendarInstructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="CalendarInstructions">Initial set up instructions</h4>
+      </div>
+      <div class="modal-body">
+        <p><strong>You must first have a Google Calendar API Key</strong>:</p>
+        <ol>
+        <li>Go to the <a href='https://console.developers.google.com/'>Google Developer Console</a>
+        and create a new project (it might take a second).</li>
+        <li>Once in the project, go to <strong>APIs &amp; auth > APIs</strong> on the sidebar.</li>
+        <li>Find "Calendar API" in the list and turn it ON.</li>
+        <li>On the sidebar, click <strong>APIs &amp; auth > Credentials</strong>.</li>
+        <li>In the "Public API access" section, click "Create new Key".</li>
+        <li>Choose "Browser key".</li>
+        <li>If you know what domains will host your calendar, enter them into the box.
+        Otherwise, leave it blank. You can always change it later.</li>
+        <li>Your new API key will appear. Copy and paste it in the top field to the right, then reopen this window to complete the instructions.</li>
+        </ol>
+        <p><strong>Make your Google Calendar public:</strong></p>
+        <ol>
+        <li>In the Google Calendar interface, locate the "My calendars" area on the left.</li>
+        <li>Hover over the calendar you need and click the downward arrow (or create a new calendar with the settings below).</li>
+        <li>A menu will appear. Click "Share this Calendar".</li>
+        <li>Check "Make this calendar public".</li>
+        <li>Make sure "Share only my free/busy information" is <strong>unchecked</strong>.</li>
+        <li>Click "Save".</li>
+        </ol>
+        <p><strong>Obtain your Google Calendar's ID:</strong></p>
+        <ol>
+        <li>In the Google Calendar interface, locate the "My calendars" area on the left.</li>
+        <li>Hover over the calendar you need and click the downward arrow.</li>
+        <li>A menu will appear. Click "Calendar settings".</li>
+        <li>In the "Calendar Address" section of the screen, you will see your Calendar ID.
+        It will look something like "randomlettersandnumbers@group.calendar.google.com".</li>
+        <li>Close this window and paste your ID in the remaining field to the right.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- preview modal -->
+<div class="modal" id="PreviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div id="preview"></div>
+</div>
+
+<!-- github modal -->
+<div class="modal fade" id="GitHubModal" tabindex="-1" role="dialog" aria-labelledby="GitHubHostingInstructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:700px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="GitHubHostingInstructions">Hosting free through GitHub</h4>
+      </div>
+      <div class="modal-body">
+        <p>If you haven't already, <a href="https://github.com/">sign up at GitHub</a> (free) using your organization name as your username. Check your email and verify your account -- this is required to publish your site.</p>
+        <p>In the upper-right corner of any page, click +, and then click "New repository."</p>
+        <p>Name your repository <code>you.github.io</code>, replacing <code>you</code> with your username as shown in the example below. Check "Initialize this repository with a README." Adding a description is optional.</p>
+        <div id="reposetup" style="width:669px;height:427px"></div>
+        <p>On the next page, click the + shown below to add a new file.</p>
+        <div id="reponewfile" style="width:669px;height:313px"></div>
+        <p>Name your file <code>index.html</code> (see below). Now find the index.html file you downloaded here earlier, right click on it and open in a plain text editor (such as Notepad on Windows -- please don't use Word). Alternatively, you may open in your browser and press Ctrl + U to view page source. Copy all the text (on Windows you can use Ctrl + A to select all, Ctrl + C to copy) and paste everything in the large text area on GitHub. Finally, click the button at the bottom of the page (not shown in the image) to commit the file.</p>
+        <div id="repopastehtml" style="width:669px;height:321px"></div>
+        <h4>Congratulations!</h4>
+        <p>It may take up to an hour to publish (in the meantime a GitHub 404 page will show, this is normal), but your site will soon be online at <code>yourusername.github.io</code>!</p>
+        <p>While waiting, I'd greatly appreciate it if you'd star this tool on GitHub <a href="https://github.com/henrygd/Nonprofit-Website-Builder">at this page</a>.</p>
+        <p>If you've waited over an hour, have verified your address, and your site still doesn't show, email me at hank@henrygd.me. I will do what I can to help.</p>
+        <h4>Submit Your Site to Search Engines</h4>
+        <p>When your site is up, you can invite search engines to index it by submitting your address here:</p>
+        <p>Google: <a href="https://www.google.com/webmasters/tools/submit-url">https://www.google.com/webmasters/tools/submit-url</a></p>
+        <p>Bing: <a href="http://www.bing.com/webmaster/SubmitSitePage.aspx">http://www.bing.com/webmaster/SubmitSitePage.aspx</a></p>
+        <h4>One Last Thing</h4>
+        <p>Please enter your email address in the first field and website URL in the second field below. This gives me a way to contact you with information and instructions so you can update your site if something no longer works.</p>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope-o "></i></span>
+            <input type="text" class="form-control" id='usergithubemail' placeholder="you@you.com">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            <input type="text" class="form-control" id='usergithubsite' placeholder="yourusername.github.io">
+        </div>
+        <button class="btn submitemail" onclick="addcontact('#usergithubemail','#usergithubsite','result1')">Submit</button>
+        <p id="result1"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- dotcom/namecheap modal -->
+<div class="modal fade" id="DotComModal" tabindex="-1" role="dialog" aria-labelledby="DotComHostingInstructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:700px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="DotComHostingInstructions">Hosting a .com or .org site</h4>
+      </div>
+      <div class="modal-body">
+        <p>If you haven't already, register your .com or .org site at <a href="https://www.namecheap.com/?aff=77472">Namecheap</a>.
+        <p>Now <a href="https://github.com/">sign up at GitHub</a> (free) using your organization name as your username. Check your email and verify your account -- this is required to publish your site.</p>
+        <p>In the upper-right corner of any GitHub page, click +, and then click "New repository."</p>
+        <p>Name your repository <code>you.github.io</code>, replacing <code>you</code> with your username as shown in the example below. Check "Initialize this repository with a README." Adding a description is optional.</p>
+        <div id="reposetup2" style="width:669px;height:427px"></div>
+        <p>On the next page, click the + shown below to add a new file.</p>
+        <div id="reponewfile2" style="width:669px;height:313px"></div>
+        <p>Name your file <code>index.html</code> (see below). Now find the index.html file you downloaded here earlier, right click on it and open in a plain text editor (such as Notepad on Windows -- please don't use Word). Alternatively, you may open in your browser and press Ctrl + U to view page source. Copy all the text (on Windows you can use Ctrl + A to select all, Ctrl + C to copy) and paste everything in the large text area on GitHub. Finally, click the button at the bottom of the page (not shown in the image) to commit the file.</p>
+        <div id="repopastehtml2" style="width:669px;height:321px"></div>
+        <p>Click the + once again to add a second file.</p>
+        <p>Name the file <code>CNAME</code> and in the larger area simply type the name of the website you registered at Namecheap in the format below. Click the button at the bottom to commit the file. (It says <code>you.org</code> but if you registered a .com it should obviously be changed to <code>you.com</code>, <code>you</code> being your own website.)</p>
+        <div id="repocname" style="width:669px;height:138px"></div>
+        <div id="namecheaphostrecords" style="height:93px!important;width:241px!important;float:left;margin: 10px 10px 0 5px;"></div>
+        <p>Head over to Namecheap and find the "All Host Records" options page for your domain. At the time of this writing, you can hover over your username in the top bar, click "Manage Domains", click your website, and find "All Host Records" on the left. But Namecheap will soon be updating their layout, so it may be different for you.</p>
+        <p>Set the <code>@</code> row's <strong>IP ADDRESS/ URL</strong> field to <code>192.30.252.153</code> and add a second <code>@</code> row with <code>192.30.252.154</code> making sure both <strong>RECORD TYPE</strong> fields are set to <code>A (Address)</code></p>
+        <p>Set the <strong>www</strong> row's <strong>IP ADDRESS/ URL</strong> field to <code>you.github.io.</code> obviously replacing <code>you</code> with your GitHub username. Don't forget the trailing period. Set the <strong>RECORD TYPE</strong> to <code>CNAME (Alias)</code></p>
+        <p>Compare your settings with the screenshot below, then click the 'save changes' button at the bottom.</p>
+        <div id="namecheapdns" style="width:669px;height:216px"></div>
+        <h4>Congratulations!</h4>
+        <p>It may take an hour or so for your site to show up (in the meantime a GitHub 404 page may show, this is normal), but it will soon be online at the URL you registered with Namecheap!</p>
+        <p>While waiting, I'd greatly appreciate if you'd star this tool on GitHub <a href="https://github.com/henrygd/Nonprofit-Website-Builder">at this page</a>.</p>
+        <p>If you've waited over an hour, have verified your address, and your site still doesn't show, email me at hank@henrygd.me. I will do what I can to help.</p>
+        <h4>Submit Your Site to Search Engines</h4>
+        <p>When your site is up, you can invite search engines to index it by submitting your address here:</p>
+        <p>Google: <a href="https://www.google.com/webmasters/tools/submit-url">https://www.google.com/webmasters/tools/submit-url</a></p>
+        <p>Bing: <a href="http://www.bing.com/webmaster/SubmitSitePage.aspx">http://www.bing.com/webmaster/SubmitSitePage.aspx</a></p>
+        <h4>One Last Thing</h4>
+        <p>Please enter your email address in the first field and website URL in the second field below. This gives me a way to contact you with information and instructions so you can update your site if something no longer works.</p>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope-o "></i></span>
+            <input type="text" class="form-control" id='userdotcomemail' placeholder="you@you.com">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-link"></i></span>
+            <input type="text" class="form-control" id='userdotcomsite' placeholder="you.org">
+        </div>
+        <button class="btn submitemail" onclick="addcontact('#userdotcomemail','#userdotcomsite','result2')">Submit</button>
+        <p id="result2"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- cloudinary modal -->
+<div class="modal fade" id="CloudinaryModal" tabindex="-1" role="dialog" aria-labelledby="CloudinaryInstructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="CloudinaryInstructions">Cloudinary set up</h4>
+      </div>
+      <div class="modal-body">
+        <h4>Finding and optimizing your image</h4>
+        <p>I highly recommend using either a photo you produced yourself or a photo that you know for sure is royalty free. Two of my favorite places for beautiful royalty free images are <a href="http://www.pexels.com/">PEXELS</a> and <a href="https://unsplash.com/grid">Unsplash</a>. Check <a href="https://medium.com/@dustin/stock-photos-that-dont-suck-62ae4bcbe01b">this list</a> for other great sites.</p>
+        <p>After you find your image, you should optimize it for web use. This is a quick process and can drastically reduce load times. Go to <a href="http://www.ico2png.com/jpeg-optimizer/">this site</a> or <a href="http://www.jpeg-optimizer.com/">this site</a>, upload your image, set the width to 1800, and submit. Download the resulting image. This is what you will upload to Cloudinary.</p>
+        <h4>Cloudinary</h4>
+        <p>It's free so <a href="https://cloudinary.com/users/register/free">sign up here</a>. After that, click "Media Library" in the left panel and upload your image by dropping it on the square or browsing your computer. Once you see it below in your library, click it and copy the URL shown directly under the image (see example below). Paste that URL into the field in the panel to the right and click "Test Image."</p>
+        <div id="cloudinaryimg" style="height:250px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- mandrill modal -->
+<div class="modal fade" id="MandrillModal" tabindex="-1" role="dialog" aria-labelledby="MandrillInstructions" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="MandrillInstructions">Mandrill set up</h4>
+      </div>
+      <div class="modal-body">
+        <p>When you reach the screen below, click "Get API Keys."</p>
+        <div id="img1" style="height:305px;"></div>
+        <p>On the next screen, click "+Add API Key".</p>
+        <div id="img2" style="height:292px;"></div>
+        <p>Edit your key (can be done at any time on the settings screen), click "Only Allow This Key To Use Certain API Calls," and check ONLY the "Send" option.</p>
+        <div id="img3" style="height:280px;"></div>
+        <p>Save your key, copy it, and paste in the field in the sidebar to the right.</p>
+        <p>Note: One drawback to free serverless hosting on GitHub is that your Mandrill API key will be visible to others. In theory, a malicious user can find your key and use it to send their own emails. As long as you don't enter your credit card information, the worst outcome is that your 12,000 free monthly emails will be used up and your contact form will, for the rest of the month, display an error message asking the user to email directly. I've never encountered this issue, but keep in mind that it is possible. You may set up custom alerts (Account>Alerts) to notify you if your usage is higher than normal.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- icons -->
+<div class="modal fade" id="iconModal" tabindex="-1" role="dialog" aria-labelledby="ChooseIcon" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="ChooseIcon">Click to change logo</h4>
+      </div>
+      <div class="modal-body">
+ <ul class="iconlist" id="icons">
+     <li><i class="fa fa-adjust"></i></li>
+     <li><i class="fa fa-anchor"></i></li>
+     <li><i class="fa fa-archive"></i></li>
+     <li><i class="fa fa-area-chart"></i></li>
+     <li><i class="fa fa-arrows"></i></li>
+     <li><i class="fa fa-arrows-h"></i></li>
+     <li><i class="fa fa-arrows-v"></i></li>
+     <li><i class="fa fa-asterisk"></i></li>
+     <li><i class="fa fa-at"></i></li>
+     <li><i class="fa fa-ban"></i></li>
+     <li><i class="fa fa-bar-chart"></i></li>
+     <li><i class="fa fa-barcode"></i></li>
+     <li><i class="fa fa-bars"></i></li>
+     <li><i class="fa fa-beer"></i></li>
+     <li><i class="fa fa-bell"></i></li>
+     <li><i class="fa fa-bell-o"></i></li>
+     <li><i class="fa fa-bell-slash"></i></li>
+     <li><i class="fa fa-bell-slash-o"></i></li>
+     <li><i class="fa fa-bicycle"></i></li>
+     <li><i class="fa fa-binoculars"></i></li>
+     <li><i class="fa fa-birthday-cake"></i></li>
+     <li><i class="fa fa-bolt"></i></li>
+     <li><i class="fa fa-bomb"></i></li>
+     <li><i class="fa fa-book"></i></li>
+     <li><i class="fa fa-bookmark"></i></li>
+     <li><i class="fa fa-bookmark-o"></i></li>
+     <li><i class="fa fa-briefcase"></i></li>
+     <li><i class="fa fa-bug"></i></li>
+     <li><i class="fa fa-building"></i></li>
+     <li><i class="fa fa-building-o"></i></li>
+     <li><i class="fa fa-bullhorn"></i></li>
+     <li><i class="fa fa-bullseye"></i></li>
+     <li><i class="fa fa-bus"></i></li>
+     <li><i class="fa fa-calculator"></i></li>
+     <li><i class="fa fa-calendar"></i></li>
+     <li><i class="fa fa-calendar-o"></i></li>
+     <li><i class="fa fa-camera"></i></li>
+     <li><i class="fa fa-camera-retro"></i></li>
+     <li><i class="fa fa-car"></i></li>
+     <li><i class="fa fa-caret-square-o-down"></i></li>
+     <li><i class="fa fa-caret-square-o-left"></i></li>
+     <li><i class="fa fa-caret-square-o-right"></i></li>
+     <li><i class="fa fa-caret-square-o-up"></i></li>
+     <li><i class="fa fa-cc"></i></li>
+     <li><i class="fa fa-certificate"></i></li>
+     <li><i class="fa fa-check"></i></li>
+     <li><i class="fa fa-check-circle"></i></li>
+     <li><i class="fa fa-check-circle-o"></i></li>
+     <li><i class="fa fa-check-square"></i></li>
+     <li><i class="fa fa-check-square-o"></i></li>
+     <li><i class="fa fa-child"></i></li>
+     <li><i class="fa fa-circle"></i></li>
+     <li><i class="fa fa-circle-o"></i></li>
+     <li><i class="fa fa-circle-o-notch"></i></li>
+     <li><i class="fa fa-circle-thin"></i></li>
+     <li><i class="fa fa-clock-o"></i></li>
+     <li><i class="fa fa-cloud"></i></li>
+     <li><i class="fa fa-cloud-download"></i></li>
+     <li><i class="fa fa-cloud-upload"></i></li>
+     <li><i class="fa fa-code"></i></li>
+     <li><i class="fa fa-code-fork"></i></li>
+     <li><i class="fa fa-coffee"></i></li>
+     <li><i class="fa fa-cog"></i></li>
+     <li><i class="fa fa-cogs"></i></li>
+     <li><i class="fa fa-comment"></i></li>
+     <li><i class="fa fa-comment-o"></i></li>
+     <li><i class="fa fa-comments"></i></li>
+     <li><i class="fa fa-comments-o"></i></li>
+     <li><i class="fa fa-compass"></i></li>
+     <li><i class="fa fa-copyright"></i></li>
+     <li><i class="fa fa-credit-card"></i></li>
+     <li><i class="fa fa-crop"></i></li>
+     <li><i class="fa fa-crosshairs"></i></li>
+     <li><i class="fa fa-cube"></i></li>
+     <li><i class="fa fa-cubes"></i></li>
+     <li><i class="fa fa-cutlery"></i></li>
+     <li><i class="fa fa-database"></i></li>
+     <li><i class="fa fa-desktop"></i></li>
+     <li><i class="fa fa-dot-circle-o"></i></li>
+     <li><i class="fa fa-download"></i></li>
+     <li><i class="fa fa-ellipsis-h"></i></li>
+     <li><i class="fa fa-ellipsis-v"></i></li>
+     <li><i class="fa fa-envelope"></i></li>
+     <li><i class="fa fa-envelope-o"></i></li>
+     <li><i class="fa fa-envelope-square"></i></li>
+     <li><i class="fa fa-eraser"></i></li>
+     <li><i class="fa fa-exchange"></i></li>
+     <li><i class="fa fa-exclamation"></i></li>
+     <li><i class="fa fa-exclamation-circle"></i></li>
+     <li><i class="fa fa-exclamation-triangle"></i></li>
+     <li><i class="fa fa-external-link"></i></li>
+     <li><i class="fa fa-external-link-square"></i></li>
+     <li><i class="fa fa-eye"></i></li>
+     <li><i class="fa fa-eye-slash"></i></li>
+     <li><i class="fa fa-eyedropper"></i></li>
+     <li><i class="fa fa-fax"></i></li>
+     <li><i class="fa fa-female"></i></li>
+     <li><i class="fa fa-fighter-jet"></i></li>
+     <li><i class="fa fa-file-archive-o"></i></li>
+     <li><i class="fa fa-file-audio-o"></i></li>
+     <li><i class="fa fa-file-code-o"></i></li>
+     <li><i class="fa fa-file-excel-o"></i></li>
+     <li><i class="fa fa-file-image-o"></i></li>
+     <li><i class="fa fa-file-pdf-o"></i></li>
+     <li><i class="fa fa-file-powerpoint-o"></i></li>
+     <li><i class="fa fa-file-video-o"></i></li>
+     <li><i class="fa fa-file-word-o"></i></li>
+     <li><i class="fa fa-film"></i></li>
+     <li><i class="fa fa-filter"></i></li>
+     <li><i class="fa fa-fire"></i></li>
+     <li><i class="fa fa-fire-extinguisher"></i></li>
+     <li><i class="fa fa-flag"></i></li>
+     <li><i class="fa fa-flag-checkered"></i></li>
+     <li><i class="fa fa-flag-o"></i></li>
+     <li><i class="fa fa-flask"></i></li>
+     <li><i class="fa fa-folder"></i></li>
+     <li><i class="fa fa-folder-o"></i></li>
+     <li><i class="fa fa-folder-open"></i></li>
+     <li><i class="fa fa-folder-open-o"></i></li>
+     <li><i class="fa fa-frown-o"></i></li>
+     <li><i class="fa fa-futbol-o"></i></li>
+     <li><i class="fa fa-gamepad"></i></li>
+     <li><i class="fa fa-gavel"></i></li>
+     <li><i class="fa fa-gift"></i></li>
+     <li><i class="fa fa-glass"></i></li>
+     <li><i class="fa fa-globe"></i></li>
+     <li><i class="fa fa-graduation-cap"></i></li>
+     <li><i class="fa fa-hdd-o"></i></li>
+     <li><i class="fa fa-headphones"></i></li>
+     <li><i class="fa fa-heart"></i></li>
+     <li><i class="fa fa-heart-o"></i></li>
+     <li><i class="fa fa-history"></i></li>
+     <li><i class="fa fa-home"></i></li>
+     <li><i class="fa fa-inbox"></i></li>
+     <li><i class="fa fa-info"></i></li>
+     <li><i class="fa fa-info-circle"></i></li>
+     <li><i class="fa fa-key"></i></li>
+     <li><i class="fa fa-keyboard-o"></i></li>
+     <li><i class="fa fa-language"></i></li>
+     <li><i class="fa fa-laptop"></i></li>
+     <li><i class="fa fa-leaf"></i></li>
+     <li><i class="fa fa-lemon-o"></i></li>
+     <li><i class="fa fa-level-down"></i></li>
+     <li><i class="fa fa-level-up"></i></li>
+     <li><i class="fa fa-life-ring"></i></li>
+     <li><i class="fa fa-lightbulb-o"></i></li>
+     <li><i class="fa fa-line-chart"></i></li>
+     <li><i class="fa fa-location-arrow"></i></li>
+     <li><i class="fa fa-lock"></i></li>
+     <li><i class="fa fa-magic"></i></li>
+     <li><i class="fa fa-magnet"></i></li>
+     <li><i class="fa fa-male"></i></li>
+     <li><i class="fa fa-map-marker"></i></li>
+     <li><i class="fa fa-meh-o"></i></li>
+     <li><i class="fa fa-microphone"></i></li>
+     <li><i class="fa fa-microphone-slash"></i></li>
+     <li><i class="fa fa-minus"></i></li>
+     <li><i class="fa fa-minus-circle"></i></li>
+     <li><i class="fa fa-minus-square"></i></li>
+     <li><i class="fa fa-minus-square-o"></i></li>
+     <li><i class="fa fa-mobile"></i></li>
+     <li><i class="fa fa-money"></i></li>
+     <li><i class="fa fa-moon-o"></i></li>
+     <li><i class="fa fa-music"></i></li>
+     <li><i class="fa fa-newspaper-o"></i></li>
+     <li><i class="fa fa-paint-brush"></i></li>
+     <li><i class="fa fa-paper-plane"></i></li>
+     <li><i class="fa fa-paper-plane-o"></i></li>
+     <li><i class="fa fa-paw"></i></li>
+     <li><i class="fa fa-pencil"></i></li>
+     <li><i class="fa fa-pencil-square"></i></li>
+     <li><i class="fa fa-pencil-square-o"></i></li>
+     <li><i class="fa fa-phone"></i></li>
+     <li><i class="fa fa-phone-square"></i></li>
+     <li><i class="fa fa-picture-o"></i></li>
+     <li><i class="fa fa-pie-chart"></i></li>
+     <li><i class="fa fa-plane"></i></li>
+     <li><i class="fa fa-plug"></i></li>
+     <li><i class="fa fa-plus"></i></li>
+     <li><i class="fa fa-plus-circle"></i></li>
+     <li><i class="fa fa-plus-square"></i></li>
+     <li><i class="fa fa-plus-square-o"></i></li>
+     <li><i class="fa fa-power-off"></i></li>
+     <li><i class="fa fa-print"></i></li>
+     <li><i class="fa fa-puzzle-piece"></i></li>
+     <li><i class="fa fa-qrcode"></i></li>
+     <li><i class="fa fa-question"></i></li>
+     <li><i class="fa fa-info-circle"></i></li>
+     <li><i class="fa fa-quote-left"></i></li>
+     <li><i class="fa fa-quote-right"></i></li>
+     <li><i class="fa fa-random"></i></li>
+     <li><i class="fa fa-recycle"></i></li>
+     <li><i class="fa fa-refresh"></i></li>
+     <li><i class="fa fa-reply"></i></li>
+     <li><i class="fa fa-reply-all"></i></li>
+     <li><i class="fa fa-retweet"></i></li>
+     <li><i class="fa fa-road"></i></li>
+     <li><i class="fa fa-rocket"></i></li>
+     <li><i class="fa fa-rss"></i></li>
+     <li><i class="fa fa-rss-square"></i></li>
+     <li><i class="fa fa-search"></i></li>
+     <li><i class="fa fa-search-minus"></i></li>
+     <li><i class="fa fa-search-plus"></i></li>
+     <li><i class="fa fa-share"></i></li>
+     <li><i class="fa fa-share-alt"></i></li>
+     <li><i class="fa fa-share-alt-square"></i></li>
+     <li><i class="fa fa-share-square"></i></li>
+     <li><i class="fa fa-share-square-o"></i></li>
+     <li><i class="fa fa-shield"></i></li>
+     <li><i class="fa fa-shopping-cart"></i></li>
+     <li><i class="fa fa-sign-in"></i></li>
+     <li><i class="fa fa-sign-out"></i></li>
+     <li><i class="fa fa-signal"></i></li>
+     <li><i class="fa fa-sitemap"></i></li>
+     <li><i class="fa fa-sliders"></i></li>
+     <li><i class="fa fa-smile-o"></i></li>
+     <li><i class="fa fa-sort"></i></li>
+     <li><i class="fa fa-sort-alpha-asc"></i></li>
+     <li><i class="fa fa-sort-alpha-desc"></i></li>
+     <li><i class="fa fa-sort-amount-asc"></i></li>
+     <li><i class="fa fa-sort-amount-desc"></i></li>
+     <li><i class="fa fa-sort-asc"></i></li>
+     <li><i class="fa fa-sort-desc"></i></li>
+     <li><i class="fa fa-sort-numeric-asc"></i></li>
+     <li><i class="fa fa-sort-numeric-desc"></i></li>
+     <li><i class="fa fa-space-shuttle"></i></li>
+     <li><i class="fa fa-spinner"></i></li>
+     <li><i class="fa fa-spoon"></i></li>
+     <li><i class="fa fa-square"></i></li>
+     <li><i class="fa fa-square-o"></i></li>
+     <li><i class="fa fa-star"></i></li>
+     <li><i class="fa fa-star-half"></i></li>
+     <li><i class="fa fa-star-half-o"></i></li>
+     <li><i class="fa fa-star-o"></i></li>
+     <li><i class="fa fa-suitcase"></i></li>
+     <li><i class="fa fa-sun-o"></i></li>
+     <li><i class="fa fa-tablet"></i></li>
+     <li><i class="fa fa-tachometer"></i></li>
+     <li><i class="fa fa-tag"></i></li>
+     <li><i class="fa fa-tags"></i></li>
+     <li><i class="fa fa-tasks"></i></li>
+     <li><i class="fa fa-taxi"></i></li>
+     <li><i class="fa fa-terminal"></i></li>
+     <li><i class="fa fa-thumb-tack"></i></li>
+     <li><i class="fa fa-thumbs-down"></i></li>
+     <li><i class="fa fa-thumbs-o-down"></i></li>
+     <li><i class="fa fa-thumbs-o-up"></i></li>
+     <li><i class="fa fa-thumbs-up"></i></li>
+     <li><i class="fa fa-ticket"></i></li>
+     <li><i class="fa fa-times"></i></li>
+     <li><i class="fa fa-times-circle"></i></li>
+     <li><i class="fa fa-times-circle-o"></i></li>
+     <li><i class="fa fa-tint"></i></li>
+     <li><i class="fa fa-toggle-off"></i></li>
+     <li><i class="fa fa-toggle-on"></i></li>
+     <li><i class="fa fa-trash"></i></li>
+     <li><i class="fa fa-trash-o"></i></li>
+     <li><i class="fa fa-tree"></i></li>
+     <li><i class="fa fa-trophy"></i></li>
+     <li><i class="fa fa-truck"></i></li>
+     <li><i class="fa fa-tty"></i></li>
+     <li><i class="fa fa-umbrella"></i></li>
+     <li><i class="fa fa-university"></i></li>
+     <li><i class="fa fa-unlock"></i></li>
+     <li><i class="fa fa-unlock-alt"></i></li>
+     <li><i class="fa fa-upload"></i></li>
+     <li><i class="fa fa-user"></i></li>
+     <li><i class="fa fa-users"></i></li>
+     <li><i class="fa fa-video-camera"></i></li>
+     <li><i class="fa fa-volume-down"></i></li>
+     <li><i class="fa fa-volume-off"></i></li>
+     <li><i class="fa fa-volume-up"></i></li>
+     <li><i class="fa fa-wheelchair"></i></li>
+     <li><i class="fa fa-wifi"></i></li>
+     <li><i class="fa fa-wrench"></i></li>
+     <li><i class="fa fa-align-center"></i></li>
+     <li><i class="fa fa-align-justify"></i></li>
+     <li><i class="fa fa-align-left"></i></li>
+     <li><i class="fa fa-align-right"></i></li>
+     <li><i class="fa fa-bold"></i></li>
+     <li><i class="fa fa-chain-broken"></i></li>
+     <li><i class="fa fa-clipboard"></i></li>
+     <li><i class="fa fa-columns"></i></li>
+     <li><i class="fa fa-file"></i></li>
+     <li><i class="fa fa-file-o"></i></li>
+     <li><i class="fa fa-file-text"></i></li>
+     <li><i class="fa fa-file-text-o"></i></li>
+     <li><i class="fa fa-files-o"></i></li>
+     <li><i class="fa fa-floppy-o"></i></li>
+     <li><i class="fa fa-font"></i></li>
+     <li><i class="fa fa-header"></i></li>
+     <li><i class="fa fa-indent"></i></li>
+     <li><i class="fa fa-italic"></i></li>
+     <li><i class="fa fa-link"></i></li>
+     <li><i class="fa fa-list"></i></li>
+     <li><i class="fa fa-list-alt"></i></li>
+     <li><i class="fa fa-list-ol"></i></li>
+     <li><i class="fa fa-list-ul"></i></li>
+     <li><i class="fa fa-outdent"></i></li>
+     <li><i class="fa fa-paperclip"></i></li>
+     <li><i class="fa fa-paragraph"></i></li>
+     <li><i class="fa fa-repeat"></i></li>
+     <li><i class="fa fa-scissors"></i></li>
+     <li><i class="fa fa-strikethrough"></i></li>
+     <li><i class="fa fa-subscript"></i></li>
+     <li><i class="fa fa-superscript"></i></li>
+     <li><i class="fa fa-table"></i></li>
+     <li><i class="fa fa-text-height"></i></li>
+     <li><i class="fa fa-text-width"></i></li>
+     <li><i class="fa fa-th"></i></li>
+     <li><i class="fa fa-th-large"></i></li>
+     <li><i class="fa fa-th-list"></i></li>
+     <li><i class="fa fa-underline"></i></li>
+     <li><i class="fa fa-undo"></i></li>
+     <li><i class="fa fa-angle-double-down"></i></li>
+     <li><i class="fa fa-angle-double-left"></i></li>
+     <li><i class="fa fa-angle-double-right"></i></li>
+     <li><i class="fa fa-angle-double-up"></i></li>
+     <li><i class="fa fa-angle-down"></i></li>
+     <li><i class="fa fa-angle-left"></i></li>
+     <li><i class="fa fa-angle-right"></i></li>
+     <li><i class="fa fa-angle-up"></i></li>
+     <li><i class="fa fa-arrow-circle-down"></i></li>
+     <li><i class="fa fa-arrow-circle-left"></i></li>
+     <li><i class="fa fa-arrow-circle-o-down"></i></li>
+     <li><i class="fa fa-arrow-circle-o-left"></i></li>
+     <li><i class="fa fa-arrow-circle-o-right"></i></li>
+     <li><i class="fa fa-arrow-circle-o-up"></i></li>
+     <li><i class="fa fa-arrow-circle-right"></i></li>
+     <li><i class="fa fa-arrow-circle-up"></i></li>
+     <li><i class="fa fa-arrow-down"></i></li>
+     <li><i class="fa fa-arrow-left"></i></li>
+     <li><i class="fa fa-arrow-right"></i></li>
+     <li><i class="fa fa-arrow-up"></i></li>
+     <li><i class="fa fa-arrows-alt"></i></li>
+     <li><i class="fa fa-caret-down"></i></li>
+     <li><i class="fa fa-caret-left"></i></li>
+     <li><i class="fa fa-caret-right"></i></li>
+     <li><i class="fa fa-caret-up"></i></li>
+     <li><i class="fa fa-chevron-circle-down"></i></li>
+     <li><i class="fa fa-chevron-circle-left"></i></li>
+     <li><i class="fa fa-chevron-circle-right"></i></li>
+     <li><i class="fa fa-chevron-circle-up"></i></li>
+     <li><i class="fa fa-chevron-down"></i></li>
+     <li><i class="fa fa-chevron-left"></i></li>
+     <li><i class="fa fa-chevron-right"></i></li>
+     <li><i class="fa fa-chevron-up"></i></li>
+     <li><i class="fa fa-hand-o-down"></i></li>
+     <li><i class="fa fa-hand-o-left"></i></li>
+     <li><i class="fa fa-hand-o-right"></i></li>
+     <li><i class="fa fa-hand-o-up"></i></li>
+     <li><i class="fa fa-long-arrow-down"></i></li>
+     <li><i class="fa fa-long-arrow-left"></i></li>
+     <li><i class="fa fa-long-arrow-right"></i></li>
+     <li><i class="fa fa-long-arrow-up"></i></li>
+     <li><i class="fa fa-backward"></i></li>
+     <li><i class="fa fa-compress"></i></li>
+     <li><i class="fa fa-eject"></i></li>
+     <li><i class="fa fa-expand"></i></li>
+     <li><i class="fa fa-fast-backward"></i></li>
+     <li><i class="fa fa-fast-forward"></i></li>
+     <li><i class="fa fa-forward"></i></li>
+     <li><i class="fa fa-pause"></i></li>
+     <li><i class="fa fa-play"></i></li>
+     <li><i class="fa fa-play-circle"></i></li>
+     <li><i class="fa fa-play-circle-o"></i></li>
+     <li><i class="fa fa-step-backward"></i></li>
+     <li><i class="fa fa-step-forward"></i></li>
+     <li><i class="fa fa-stop"></i></li>
+     <li><i class="fa fa-youtube-play"></i></li>
+     <li><i class="fa fa-adn"></i></li>
+     <li><i class="fa fa-android"></i></li>
+     <li><i class="fa fa-angellist"></i></li>
+     <li><i class="fa fa-apple"></i></li>
+     <li><i class="fa fa-behance"></i></li>
+     <li><i class="fa fa-behance-square"></i></li>
+     <li><i class="fa fa-bitbucket"></i></li>
+     <li><i class="fa fa-bitbucket-square"></i></li>
+     <li><i class="fa fa-btc"></i></li>
+     <li><i class="fa fa-cc-amex"></i></li>
+     <li><i class="fa fa-cc-discover"></i></li>
+     <li><i class="fa fa-cc-mastercard"></i></li>
+     <li><i class="fa fa-cc-paypal"></i></li>
+     <li><i class="fa fa-cc-stripe"></i></li>
+     <li><i class="fa fa-cc-visa"></i></li>
+     <li><i class="fa fa-codepen"></i></li>
+     <li><i class="fa fa-css3"></i></li>
+     <li><i class="fa fa-delicious"></i></li>
+     <li><i class="fa fa-deviantart"></i></li>
+     <li><i class="fa fa-digg"></i></li>
+     <li><i class="fa fa-dribbble"></i></li>
+     <li><i class="fa fa-dropbox"></i></li>
+     <li><i class="fa fa-drupal"></i></li>
+     <li><i class="fa fa-empire"></i></li>
+     <li><i class="fa fa-facebook"></i></li>
+     <li><i class="fa fa-facebook-square"></i></li>
+     <li><i class="fa fa-flickr"></i></li>
+     <li><i class="fa fa-foursquare"></i></li>
+     <li><i class="fa fa-git"></i></li>
+     <li><i class="fa fa-git-square"></i></li>
+     <li><i class="fa fa-github"></i></li>
+     <li><i class="fa fa-github-alt"></i></li>
+     <li><i class="fa fa-github-square"></i></li>
+     <li><i class="fa fa-gittip"></i></li>
+     <li><i class="fa fa-google"></i></li>
+     <li><i class="fa fa-google-plus"></i></li>
+     <li><i class="fa fa-google-plus-square"></i></li>
+     <li><i class="fa fa-google-wallet"></i></li>
+     <li><i class="fa fa-hacker-news"></i></li>
+     <li><i class="fa fa-html5"></i></li>
+     <li><i class="fa fa-instagram"></i></li>
+     <li><i class="fa fa-ioxhost"></i></li>
+     <li><i class="fa fa-joomla"></i></li>
+     <li><i class="fa fa-jsfiddle"></i></li>
+     <li><i class="fa fa-lastfm"></i></li>
+     <li><i class="fa fa-lastfm-square"></i></li>
+     <li><i class="fa fa-linkedin"></i></li>
+     <li><i class="fa fa-linkedin-square"></i></li>
+     <li><i class="fa fa-linux"></i></li>
+     <li><i class="fa fa-maxcdn"></i></li>
+     <li><i class="fa fa-meanpath"></i></li>
+     <li><i class="fa fa-openid"></i></li>
+     <li><i class="fa fa-pagelines"></i></li>
+     <li><i class="fa fa-paypal"></i></li>
+     <li><i class="fa fa-pied-piper"></i></li>
+     <li><i class="fa fa-pied-piper-alt"></i></li>
+     <li><i class="fa fa-pinterest"></i></li>
+     <li><i class="fa fa-pinterest-square"></i></li>
+     <li><i class="fa fa-qq"></i></li>
+     <li><i class="fa fa-rebel"></i></li>
+     <li><i class="fa fa-reddit"></i></li>
+     <li><i class="fa fa-reddit-square"></i></li>
+     <li><i class="fa fa-renren"></i></li>
+     <li><i class="fa fa-skype"></i></li>
+     <li><i class="fa fa-slack"></i></li>
+     <li><i class="fa fa-slideshare"></i></li>
+     <li><i class="fa fa-soundcloud"></i></li>
+     <li><i class="fa fa-spotify"></i></li>
+     <li><i class="fa fa-stack-exchange"></i></li>
+     <li><i class="fa fa-stack-overflow"></i></li>
+     <li><i class="fa fa-steam"></i></li>
+     <li><i class="fa fa-steam-square"></i></li>
+     <li><i class="fa fa-stumbleupon"></i></li>
+     <li><i class="fa fa-stumbleupon-circle"></i></li>
+     <li><i class="fa fa-tencent-weibo"></i></li>
+     <li><i class="fa fa-trello"></i></li>
+     <li><i class="fa fa-tumblr"></i></li>
+     <li><i class="fa fa-tumblr-square"></i></li>
+     <li><i class="fa fa-twitch"></i></li>
+     <li><i class="fa fa-twitter"></i></li>
+     <li><i class="fa fa-twitter-square"></i></li>
+     <li><i class="fa fa-vimeo-square"></i></li>
+     <li><i class="fa fa-vine"></i></li>
+     <li><i class="fa fa-vk"></i></li>
+     <li><i class="fa fa-weibo"></i></li>
+     <li><i class="fa fa-weixin"></i></li>
+     <li><i class="fa fa-windows"></i></li>
+     <li><i class="fa fa-wordpress"></i></li>
+     <li><i class="fa fa-xing"></i></li>
+     <li><i class="fa fa-xing-square"></i></li>
+     <li><i class="fa fa-yahoo"></i></li>
+     <li><i class="fa fa-yelp"></i></li>
+     <li><i class="fa fa-youtube"></i></li>
+     <li><i class="fa fa-youtube-square"></i></li>
+   </ul>
+</div>
+      <div class="modal-footer">
+        <button type="button" id="nologo" class="btn btn-danger" data-dismiss="modal">No Logo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- hidden elements to store values -->
+    <div class="hide"><a onclick='updatescrollbar()' id="right-panel-link" href="#right-panel"></a><p id="backvalue"></p><p id="barcolor"></p><p id="aboutbackground"></p><p id="eventsbackground"></p><p id="contactbackground"></p><input type="text" id="barhex" value="222222"><input type="text" id="bartexthex" value="FA4747"><input type="text" id="introtexthex" value="FA4747"><input type="text" id="biconhex" value="46c24a"><input type="text" id="navhighlighthex" value="fed136"><input type="text" id="btnshex" value="fed136"><input type="text" id="btnsecondhex" value="a17f12"><input type="text" id="abouthex" value="ededed"><input type="text" id="eventhex" value="a63d3d"><input type="text" id="contacthex" value="0B1233"><input type="text" id="ciconhex" value="FA4747"><input type="text" id="linkhex" value="FA4747"><input type="text" id="butthov" value=".btn-2{box-shadow: 0 4px #a17f12}.btn-2:hover{box-shadow:0 5px #a17f12;top:-1px}.btn-2:active{box-shadow:none;top:4px}"></div>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- load intro modal -->
+    <script>$('#hiModal').modal('show')</script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="static/js/jquery.panelslider.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="static/js/jqBootstrapValidation.js"></script>
+    <script src="static/js/contact_me.js"></script>
+
+<!-- background -->
+<script>$.backstretch("static/img/webbuilderbackground.jpg");</script>
+
+<!-- ajax loading icon -->
+<script>
+    $(document).bind("ajaxSend", function(){
+      $("#resultinfo").html("");
+      $("#loadingpin, #loading").show();
+    }).bind("ajaxComplete", function(){
+      $("#loadingpin, #loading").hide();
+   });
+</script>
+
+<!-- stripe donation -->
+<script>
+    var handler = StripeCheckout.configure({
+      key: "pk_test_fiRdSRK6HSjbzOKiwx3KKnSI",
+      token: function(token) {
+        $.getJSON ("https://henrygd.me/charge?callback=?", { // do not change
+            publishableKey: "pk_test_fiRdSRK6HSjbzOKiwx3KKnSI", // replace with your key
+            stripeToken: token.id, // do not change
+            amount: Math.round(Number($("#donatethis").val().replace("$",""))*100),
+            description: "Donation" // optional, you may delete line
+        }, function (data) {
+              if (data.result != undefined){
+                $('#resultinfo').html(
+                  "<p>Thank you! We will put you donation to good use. Every dollar helps us do a bit more than we would have otherwise.</p>"
+                  )
+              } else{
+                $('#resultinfo').html(
+                  "<p>Sorry, it appears the transaction was unsuccessful.</p>"
+                  )
+              }
+            });
+        $("#ThanksModal").modal("show");
+      }
+    });
+
+    $("#customButton").on("click", function(e) { // button id that launches Checkout
+      // converts donatethis field to simple integer
+      custdonation = Number($("#donatethis").val().replace("$",""));
+      // Open Checkout with further options - customize name and description
+      handler.open({
+        name: "Your Organization",
+        description: "Donation ($" + custdonation + ")",
+        amount: Math.round(custdonation*100),
+        allowRememberMe: false
+      });
+      e.preventDefault();
+    });
+</script>
+
+<!-- initiate sidebar -->
+ <script>
+    $('#right-panel-link').panelslider({side: 'right', clickClose: false});
+  </script>
+
+<!-- sidebar scrollbar stuff -->
+  <script>
+    $(function() {
+        $('#right-panel').perfectScrollbar({
+          suppressScrollX: true,
+          includePadding: true,
+        })
+    });
+    function updatescrollbar() {
+        setTimeout(function() {$('#right-panel').perfectScrollbar('update');} , 400);
+    };
+</script>
+
+<!-- add background / navbar gradients -->
+<script>
+    $(function() {
+        $('#gradients, #bargradients, #aboutgradients, #eventsgradients, #contactgradients').change(function(){
+          if($(this).val()=='alostmemory'){var first='222,98,98';var second='255,184,140';}
+          else if($(this).val()=='starfall'){var first='240,194,123';var second='75,18,72';}
+          else if($(this).val()=='Aubergine'){var first='170,7,107';var second='97,4,95';}
+          else if($(this).val()=='Ash'){var first='96,108,136';var second='63,76,107';}
+          else if($(this).val()=='Sunrise'){var first='255,81,47';var second='240,152,25';}
+          else if($(this).val()=='endlessriver'){var first='67,206,162';var second='24,90,157';}
+          else if($(this).val()=='Mystic'){var first='117,127,154';var second='215,221,232';}
+          else if($(this).val()=='midnightcity'){var first='35,37,38';var second='65,67,69';}
+          else if($(this).val()=='kokocaramel'){var first='209,145,60';var second='255,209,148';}
+          else if($(this).val()=='SeaBlizz'){var first='28,216,210';var second='147,237,199';}
+          else if($(this).val()=='Amethyst'){var first='157,80,187';var second='110,72,170';}
+          else if($(this).val()=='Cherry'){var first='235,51,73';var second='244,92,67';}
+          else if($(this).val()=='Influenza'){var first='192,72,72';var second='72,0,72';}
+          else if($(this).val()=='Clouds'){var first='236,233,230';var second='255,255,255';}
+          else if($(this).val()=='Mojito'){var first='29,151,108';var second='147,249,185';}
+          else if($(this).val()=='BloodyMary'){var first='255,81,47';var second='221,36,118';}
+        if (this.id=='gradients'){
+            $('body')
+              .css('background','-webkit-linear-gradient(left, rgb(' + first + ') 10%, rgb(' + second + ') 90%)')
+              .css('background','-moz-linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%)')
+              .css('background','-ms-linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%)')
+              .css('background','-o-linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%)')
+              .css('background','linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%)')
+            $('#backvalue').text(';background:-webkit-linear-gradient(left, rgb(' + first + ') 10%, rgb(' + second + ') 90%);background:-moz-linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%);background:-ms-linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%);background:-o-linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%);background:linear-gradient(90deg, rgb(' + first + ') 10%, rgb(' + second + ') 90%)')}
+        else if (this.id=='bargradients'){
+              $('#barcolor').text('background:-webkit-linear-gradient(left, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:-moz-linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:-ms-linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:-o-linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%)');
+              $('#barcolorstyle').replaceWith('<style id="barcolorstyle">.navbar-default, .navbar-default.navbar-shrink, .navbar-default .navbar-toggle .icon-bar{background:-webkit-linear-gradient(left, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:-moz-linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:-ms-linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:-o-linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%);background:linear-gradient(90deg, rgba(' + first + ',0.95) 10%, rgba(' + second + ',0.95) 90%)}</style>')}
+        else if (this.id=='aboutgradients'){
+              addsectiongradient('#about')
+            }
+        else if (this.id=='eventsgradients'){
+              addsectiongradient('#events')
+          }
+        else {
+              addsectiongradient('#contact')
+          }
+        function addsectiongradient (section){
+            $(section).css('background-color','transparent').css('box-shadow','0px 0px 30px #000')
+              .css('background','-webkit-linear-gradient(left, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
+              .css('background','-moz-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
+              .css('background','-ms-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
+              .css('background','-o-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
+              .css('background','linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)');
+            $(section+'background').text('background:-webkit-linear-gradient(left, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%);background:-moz-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%);background:-ms-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%);background:-o-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%);background:linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')}
+        });
+    });
+</script>
+
+<!-- load default section backgrounds -->
+<script>
+$(function(){
+    $('#bargradients').prop('checked',true).change()
+    $('#eventsgrad').prop('checked',true).change()
+});
+</script>
+
+<!-- toggles background options -->
+<script>
+$(function(){
+    $('#gradientsec').hide();
+    $("#photoback").change(function () {
+        if ($(this).is(':checked')) {
+            $('#gradientsec').slideUp(function(){
+              $("#photosec").slideDown();
+            });
+        }
+        if ($('#custimage').val() != false){$.backstretch($('#custimage').val())}
+        else{$.backstretch("static/img/webbuilderbackground.jpg")};
+    });
+    $("#gradientback").change(function () {
+        if ($(this).is(':checked')) {
+            $('#photosec').slideUp(function(){
+              $("#gradientsec").slideDown();
+            });
+            $.backstretch("destroy");
+            $('#gradients').change();
+        }
+    });
+});
+</script>
+
+<!-- handles section background gradient changes -->
+<script>
+    function sectiongradient(checkbox,select,section) {
+        if ($(checkbox).is(':checked')) {
+            $('#'+section+'trasp').attr('checked', false).change();
+            $(select).slideDown();
+            $(select).change();
+        }
+        else {
+            color = $('.color-box-'+section+'-tint').css('background-color');
+            $(select).slideUp();
+            $('#'+section).css('background','none').css('background-color',color);
+        }
+    };
+</script>
+
+<!-- destroys section background gradient -->
+<script>
+    function destroygradient(section){
+        $('#'+section).css('background','none');
+        $('#'+section+'trasp').attr('checked', false).change();
+        $('#'+section+'grad').attr('checked', false).change();
+    }
+</script>
+
+<!-- toggles section trasparency -->
+<script>
+function transparent (checkbox,section){
+    var notrasp = $('.color-box-'+section+'-tint').css('background-color');
+    if ($(checkbox).is(':checked')) {
+        $('#'+section+'grad').attr('checked', false).change();
+        $('#'+section).css('background-color','transparent').css('box-shadow','none');
+    }
+    else {
+        $('#'+section).css('background-color',notrasp).css('box-shadow','0px 0px 30px #000');
+    }
+}
+</script>
+
+<!-- returns section background -->
+<script>
+    function sectionback(section){
+        if ($(section+'trasp').prop('checked'))
+                return 'background-color:transparent;box-shadow:none'
+        else if ($(section+'grad').prop('checked'))
+                return 'background:' + $(section+'background').text()
+        else return 'background-color:' + $(section).css('background-color')
+    }
+</script>
+
+<!-- clears old, sets new navbar section highlight -->
+<script>
+function sectionhighlight(color){
+    $('.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:active,.navbar-default .navbar-brand.active').css('color','')
+    $('.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus,.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav > .active > a:focus').css('background-color','')
+    $('#navsecactive').text('.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:active,.navbar-default .navbar-brand.active{color:#'+color+'!important}.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus,.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav > .active > a:focus{background-color:#'+color+'}::-moz-selection{text-shadow:none;background:#'+color+'}::selection{text-shadow:none;background:#'+color+'}section#contact .form-control:focus{border-color:#'+color+';box-shadow:none}')
+}
+</script>
+
+<!-- toggles navbar background options -->
+<script>
+$(function(){
+    $(".color-box").hide();
+    $("#gradientbar").change(function () {
+        if ($(this).is(':checked')) {$('#bargradients').show();$('.color-box').hide();$('#bargradients').change();}
+    });
+    $("#solidbar").change(function () {
+        t = $('.color-box').css('background-color');
+        if ($(this).is(':checked')) {$('#bargradients').hide();$('.color-box').show();$('#barcolorstyle').replaceWith('<style id="barcolorstyle">.navbar-default, .navbar-default.navbar-shrink, .navbar-default .navbar-toggle .icon-bar{background-color:'+t+'}</style>');}
+    });
+});
+</script>
+
+<!-- font preset selections -->
+<script>
+    $(function() {
+        $('#fontpresets').change(function(){
+        a = '#orgfonts'; b = '#showfonts'; c = '#bodyfonts'; y = '#boldcheckbox'; z = '#uppercasecheckbox';
+          if($(this).val()=='default'){$(a).val('Kaushan Script').change();$(b).val('Open Sans').change();$(c).val('Open Sans').change();
+            if ($(y).prop('checked', false)){$(y).click()};if ($(z).prop('checked', false)){$(z).click()};}
+          else if($(this).val()=='fun'){$(a).val('Indie Flower').change();$(b).val('Chewy').change();$(c).val('Indie Flower').change();
+            if ($(y).prop('checked', true)){$(y).click()};if ($(z).prop('checked', true)){$(z).click()};}
+          else if($(this).val()=='serious'){$(a).val('Alegreya').change();$(b).val('Alegreya').change();$(c).val('Vollkorn').change();
+            if ($(y).prop('checked', false)){$(y).click()};if ($(z).prop('checked', false)){$(z).click()};}
+        });
+    });
+</script>
+
+<!-- change font styles -->
+<script>
+    $(function() {
+        $('#orgfonts, #bodyfonts, #showfonts').change(function(){
+          if($(this).val()=='Kaushan Script'){var url='Kaushan+Script';var family='Kaushan Script';}
+          else if($(this).val()=='Roboto Slab'){var url='Roboto+Slab';var family='Roboto Slab';}
+          else if($(this).val()=='Montserrat'){var url='Montserrat';var family='Montserrat';}
+          else if($(this).val()=='Oswald'){var url='Oswald';var family='Oswald';}
+          else if($(this).val()=='Lobster'){var url='Lobster';var family='Lobster';}
+          else if($(this).val()=='Vollkorn'){var url='Vollkorn';var family='Vollkorn';}
+          else if($(this).val()=='Bangers'){var url='Bangers';var family='Bangers';}
+          else if($(this).val()=='Overlock'){var url='Overlock';var family='Overlock';}
+          else if($(this).val()=='Alegreya'){var url='Alegreya';var family='Alegreya';}
+          else if($(this).val()=='Chewy'){var url='Chewy';var family='Chewy';}
+          else if($(this).val()=='Playfair Display SC'){var url='Playfair+Display+SC';var family='Playfair Display SC';}
+          else if($(this).val()=='Voltaire'){var url='Voltaire';var family='Voltaire';}
+          else if($(this).val()=='Cuprum'){var url='Cuprum';var family='Cuprum';}
+          else if($(this).val()=='Abril Fatface'){var url='Abril+Fatface';var family='Abril Fatface';}
+          else if($(this).val()=='Indie Flower'){var url='Indie+Flower';var family='Indie Flower';}
+          else if($(this).val()=='Pacifico'){var url='Pacifico';var family='Pacifico';}
+          else if($(this).val()=='Open Sans'){var url='Open+Sans';var family='Open Sans';}
+        if (this.id=='orgfonts'){
+            $('#orgfontstyle').html(".navbar-default .navbar-brand{font-family:'"+family+"','Helvetica Neue','sans-serif';color:#E43434}");
+            $('#orgfont').replaceWith("<link id='orgfont' href='https://fonts.googleapis.com/css?family="+url+"' rel='stylesheet' type='text/css'>");}
+        else if (this.id=='bodyfonts'){
+            $('#bodyfontstyle').html("body,section h3.section-subheading{font-family:'"+family+"','Helvetica Neue','sans-serif'}");
+            $('#bodyfont').replaceWith("<link id='bodyfont' href='https://fonts.googleapis.com/css?family="+url+"' rel='stylesheet' type='text/css'>");}
+        else{
+            $('#showfontstyle').html("h1,h2,h4,h5,h6,.btn-danger,.btn-primary,.btn-2,.navbar-default .nav li a,header .intro-text .intro-heading{text-transform:uppercase;font-family:'"+family+"','Helvetica Neue','sans-serif';font-weight:700}footer span.copyright,footer a.quicklink{font-family:'"+family+"','Helvetica Neue','sans-serif'}");
+            $('#showfont').replaceWith("<link id='showfont' href='https://fonts.googleapis.com/css?family="+url+":400,700' rel='stylesheet' type='text/css'>");}
+        });
+    });
+</script>
+
+<!-- chage logo icon -->
+<script>
+    $(function(){
+    $("#icons li i").on("click", function(){
+        var myClass = $(this).attr("class");
+        $("#bicon").attr('class', myClass);
+        $('#iconModal').modal('toggle');
+    });
+    $("#nologo").on("click", function(){
+        $("#bicon").removeClass();
+    });
+});
+</script>
+
+<!-- modifies organization name in navbar / footer -->
+<script>
+    $('#orgnameinput').keyup(function() {
+      var val = $.trim(this.value);
+      $("#orgname").text(val);
+      $("#orgnamecopyright").text(val);
+    });
+</script>
+
+<!-- text options - bold, shadow, uppercase -->
+<script>
+    $(function(){
+    i = 'h1,h2,h4,h5,h6,.btn-primary,.btn-2,.navbar-default .nav li a,header .intro-text .intro-heading'
+        $("#uppercasecheckbox").change(function () {;
+            if ($(this).is(':checked')) {$('#textcase').html(i+'{text-transform:uppercase!important}');}
+            else {$('#textcase').html(i+'{text-transform:none!important}');}
+        });
+        $("#boldcheckbox").change(function () {
+            if ($(this).is(':checked')) {$('#fontweight').html(i+'{font-weight:700!important}');}
+            else {$('#fontweight').html(i+'{font-weight:400!important}');}
+        });
+        $("#shadowcheckbox").change(function () {
+            if ($(this).is(':checked')) {$('#shadow')
+                .html('.intro-heading{text-shadow: 1px 1px 5px #000}');}
+            else {$('#shadow')
+                .html('.intro-heading{text-shadow:none}');}
+        });
+    });
+</script>
+
+<!-- show / hide map / events sections -->
+<script>
+    $("#toggle-event").change(function () {
+        if ($(this).is(':checked')) {$('#events, #eventnav, #eventcont').slideDown();}
+        else {$('#events, #eventnav, #eventcont').slideUp();}
+    });
+    $("#toggle-map").change(function () {
+        if ($(this).is(':checked')) {$('#map, #mapcont').slideDown();}
+        else {$('#map, #mapcont').slideUp();}
+    });
+</script>
+
+<!-- Disable backspace history function / open options / clear text editor-->
+<script>
+    $(document).on('keydown',function(e){
+      var $target = $(e.target||e.srcElement);
+      var inputs = 'input,[contenteditable="true"],textarea'
+      if(e.keyCode == 8 && !$target.is(inputs))
+        {e.preventDefault();}
+      else if(e.keyCode === 27)
+        {$('.popover').hide();}
+    })
+</script>
+
+<!-- save localstorage data -->
+<script>
+$("#confirmsavebutton").click(function(){
+// Check browser support
+if (typeof(Storage) != "undefined") {
+    // Store
+    if ($("#gradientback").is(':checked')){
+        background = $('#gradients').val();}
+        else if ($('#custimage').val() == false) {background = "https://i.imgur.com/Ik17LYf.jpg"}
+        else{background = $('#custimage').val().replace('http://',"https://")};
+    if ($("#gradientbar").is(':checked')){
+        localStorage.setItem("barcolor", 'grad'+$('#bargradients').val())}
+        else{localStorage.setItem("barcolor", $('#barhex').val())};
+    if ($('#toggle-event').is(":checked"))
+        eventstatus = 'true'
+        else eventstatus = 'false'
+    if ($('#toggle-map').is(":checked"))
+        mapstatus = 'true'
+        else mapstatus = 'false'
+    if ($('#abouttrasp').prop('checked')){
+        localStorage.setItem("abouttransp", 'true');
+    } else{localStorage.setItem("abouttransp", "")}
+    if ($('#aboutgrad').prop('checked')){
+        localStorage.setItem("aboutgradient", $('#aboutgradients').val())
+    } else {localStorage.setItem("aboutgradient", "")}
+
+    if ($('#eventstrasp').prop('checked')){
+        localStorage.setItem("eventstransp", 'true');
+    } else{localStorage.setItem("eventstransp", "")}
+    if ($('#eventsgrad').prop('checked')){
+        localStorage.setItem("eventsgradient", $('#eventsgradients').val())
+    } else {localStorage.setItem("eventsgradient", "")}
+
+    if ($('#contacttrasp').prop('checked')){
+        localStorage.setItem("contacttransp", 'true');
+    } else{localStorage.setItem("contacttransp", "")}
+    if ($('#contactgrad').prop('checked')){
+        localStorage.setItem("contactgradient", $('#contactgradients').val())
+    } else {localStorage.setItem("contactgradient", "")}
+
+    localStorage.setItem("orgname", $("#orgname").text());
+    localStorage.setItem("logo", $('#bicon').attr('class'));
+    localStorage.setItem("orgfont", $('#orgfont')[0].outerHTML);
+    localStorage.setItem("showfont", $('#showfont')[0].outerHTML);
+    localStorage.setItem("bodyfont", $('#bodyfont')[0].outerHTML);
+    localStorage.setItem("orgfontstyle", $('#orgfontstyle')[0].outerHTML);
+    localStorage.setItem("showfontstyle", $('#showfontstyle')[0].outerHTML);
+    localStorage.setItem("bodyfontstyle", $('#bodyfontstyle')[0].outerHTML);
+    localStorage.setItem("shadow", $('#shadow')[0].outerHTML);
+    localStorage.setItem("fontweight", $('#fontweight')[0].outerHTML);
+    localStorage.setItem("textcase", $('#textcase')[0].outerHTML);
+    localStorage.setItem("fontsizestyle", $('#fontsizestyle')[0].outerHTML);
+    localStorage.setItem("logocolor", $('#biconhex').val());
+    localStorage.setItem("navsecactive", $('#navhighlighthex').val());
+    localStorage.setItem("buttoncolor", $('#btnshex').val());
+    localStorage.setItem("butthov", $('#btnsecondhex').val());
+    localStorage.setItem("navbartext", $('#bartexthex').val());
+    localStorage.setItem("introtextcolor", $('#introtexthex').val());
+    localStorage.setItem("aboutback", $('#abouthex').val());
+    localStorage.setItem("eventsback", $('#eventhex').val());
+    localStorage.setItem("contactback", $('#contacthex').val());
+    localStorage.setItem("contacticons", $('#ciconhex').val());
+    localStorage.setItem("linkcolor", $('#linkhex').val());
+    localStorage.setItem("latitude", $('#latitude').val());
+    localStorage.setItem("longitude", $('#longitude').val());
+    localStorage.setItem("twitter", $('#twit').val());
+    localStorage.setItem("facebook", $('#faceb').val());
+    localStorage.setItem("youtube", $('#yout').val());
+    localStorage.setItem("navabout", $(".summernote").code());
+    localStorage.setItem("navevents", $(".summernote").eq(1).code());
+    localStorage.setItem("navcontact", $(".summernote").eq(2).code());
+    localStorage.setItem("introtext", $(".summernote").eq(3).code());
+    localStorage.setItem("abouthead", $(".summernote").eq(4).code());
+    localStorage.setItem("aboutsub", $(".summernote").eq(5).code());
+    localStorage.setItem("aboutcont", $(".summernote").eq(6).code());
+    localStorage.setItem("eventhead", $(".summernote").eq(7).code());
+    localStorage.setItem("contacthead", $(".summernote").eq(8).code());
+    localStorage.setItem("phone", $(".summernote").eq(9).code());
+    localStorage.setItem("address", $(".summernote").eq(10).code());
+    localStorage.setItem("email", $(".summernote").eq(11).code());
+    localStorage.setItem("mandrill_api", $('#mandrill_api').val());
+    localStorage.setItem("stripepk", $('#stripepk').val());
+    localStorage.setItem("cal_api", $('#cal_api').val());
+    localStorage.setItem("cal_id", $('#cal_id').val());
+    localStorage.setItem("background", background);
+    localStorage.setItem("eventstatus", eventstatus);
+    localStorage.setItem("mapstatus", mapstatus);
+    $('#confirmsave').fadeOut(200);
+    setTimeout(function(){$('#saveconfirmed').fadeIn(200);}, 220);
+    setTimeout(function(){$('#saveconfirmed').fadeOut(200);}, 1020);
+    setTimeout(function(){$('.panel-group .panel').fadeIn(200);}, 1240);
+    setTimeout(function(){$('#right-panel').perfectScrollbar('update');}, 1450);
+} else {
+    alert("Sorry, your browser does not support Web Storage");
+    $('.panel-group .panel').fadeIn(200);
+}
+});
+</script>
+
+<!-- load saved localstorage data -->
+<script>
+$("#confirmloadbutton").click(function(){
+// Check browser support
+if (typeof(Storage) != "undefined") {
+    // Retrieve
+    if (localStorage.getItem("eventstatus") == "false" && $('#toggle-event').prop('checked', true)){
+        $('#toggle-event').click();}
+    if (localStorage.getItem("mapstatus") == "false" && $('#toggle-map').prop('checked', true)){
+        $('#toggle-map').click();}
+    if (localStorage.getItem("background").indexOf("http") >= 0){
+        $('#custimage').val(localStorage.getItem("background"));
+        $('#photoback').click().change()}
+        else{
+            $('#gradientback').click();
+            $('#gradients').val(localStorage.getItem("background")).change()};
+    if (localStorage.getItem("barcolor").indexOf("grad") >= 0) {
+        val = localStorage.getItem("barcolor").replace("grad","");
+        $('#gradientbar').click();
+        $('#bargradients').val(val).change()}
+        else{
+            $('#solidbar').click();
+            $('.color-box').colpickSetColor(localStorage.getItem("barcolor"));}
+    $("#orgname").text(localStorage.getItem("orgname"));
+    $("#orgnamecopyright").text(localStorage.getItem("orgname"));
+    $("#orgnameinput").val(localStorage.getItem("orgname"));
+    $('#bicon').removeClass().addClass(localStorage.getItem("logo"));
+    $(".summernote").code(localStorage.getItem("navabout"));
+    $(".summernote").eq(1).code(localStorage.getItem("navevents"));
+    $(".summernote").eq(2).code(localStorage.getItem("navcontact"));
+    $(".summernote").eq(3).code(localStorage.getItem("introtext"));
+    $(".summernote").eq(4).code(localStorage.getItem("abouthead"));
+    $(".summernote").eq(5).code(localStorage.getItem("aboutsub"));
+    $(".summernote").eq(6).code(localStorage.getItem("aboutcont"));
+    $(".summernote").eq(7).code(localStorage.getItem("eventhead"));
+    $(".summernote").eq(8).code(localStorage.getItem("contacthead"));
+    $(".summernote").eq(9).code(localStorage.getItem("phone"));
+    $(".summernote").eq(10).code(localStorage.getItem("address"));
+    $(".summernote").eq(11).code(localStorage.getItem("email"));
+    $('#orgfont').replaceWith(localStorage.getItem("orgfont"));
+    $('#showfont').replaceWith(localStorage.getItem("showfont"));
+    $('#bodyfont').replaceWith(localStorage.getItem("bodyfont"));
+    $('#orgfontstyle').replaceWith(localStorage.getItem("orgfontstyle"));
+    $('#showfontstyle').replaceWith(localStorage.getItem("showfontstyle"));
+    $('#bodyfontstyle').replaceWith(localStorage.getItem("bodyfontstyle"));
+    $('#shadow').replaceWith(localStorage.getItem("shadow"));
+    $('#fontweight').replaceWith(localStorage.getItem("fontweight"));
+    $('#textcase').replaceWith(localStorage.getItem("textcase"));
+    $('#fontsizestyle').replaceWith(localStorage.getItem("fontsizestyle"));
+    $('.color-box-btnsecond').colpickSetColor(localStorage.getItem("butthov"));
+    $('.color-box-navhighlight').colpickSetColor(localStorage.getItem("navsecactive"));
+    sectionhighlight(localStorage.getItem("navsecactive"));
+    $('.color-box-bicon').colpickSetColor(localStorage.getItem("logocolor"));
+    $('.color-box-btns').colpickSetColor(localStorage.getItem("buttoncolor"));
+    $('.color-box-bartext').colpickSetColor(localStorage.getItem("navbartext"));
+    $('.color-box-introtext').colpickSetColor(localStorage.getItem("introtextcolor"));
+    $('.color-box-about-tint').colpickSetColor(localStorage.getItem("aboutback"));
+    $('.color-box-events-tint').colpickSetColor(localStorage.getItem("eventsback"));
+    $('.color-box-contact-tint').colpickSetColor(localStorage.getItem("contactback"));
+    $('.color-box-cicon').colpickSetColor(localStorage.getItem("contacticons"));
+    $('.color-box-link').colpickSetColor(localStorage.getItem("linkcolor"));
+    $('#latitude').val(localStorage.getItem("latitude"));
+    $('#longitude').val(localStorage.getItem("longitude"));
+    $('#update-map').click();
+    $('#twit').val(localStorage.getItem("twitter"));
+    $('#faceb').val(localStorage.getItem("facebook"));
+    $('#yout').val(localStorage.getItem("youtube"));
+    $('#mandrill_api').val(localStorage.getItem("mandrill_api"));
+    $('#stripepk').val(localStorage.getItem("stripepk"));
+    $('#cal_api').val(localStorage.getItem("cal_api"));
+    $('#cal_id').val(localStorage.getItem("cal_id"));
+    if (localStorage.getItem("abouttransp") == "true"){
+        setTimeout(function(){$('#abouttrasp').prop('checked',true).change()},20)}
+    if (localStorage.getItem("aboutgradient") == ""){destroygradient('about')}
+        else{
+            $('#aboutgradients').val(localStorage.getItem("aboutgradient"))
+            $('#aboutgrad').prop('checked',true).change()}
+    if (localStorage.getItem("eventstransp") == "true"){
+        setTimeout(function(){$('#eventstrasp').prop('checked',true).change()},20)}
+    if (localStorage.getItem("eventsgradient") == ""){destroygradient('events')}
+        else{
+            $('#eventsgradients').val(localStorage.getItem("eventsgradient"))
+            $('#eventsgrad').prop('checked',true).change()}
+    if (localStorage.getItem("contacttransp") == "true"){
+        setTimeout(function(){$('#contacttrasp').prop('checked',true).change()},20)}
+    if (localStorage.getItem("contactgradient") == ""){destroygradient('contact')}
+        else{
+            $('#contactgradients').val(localStorage.getItem("contactgradient"))
+            $('#contactgrad').prop('checked',true).change()}
+    $('#confirmload').fadeOut(200);
+    setTimeout(function(){$('.panel-group .panel').fadeIn(200);}, 220);
+    setTimeout(function(){$('#right-panel').perfectScrollbar('update');}, 430);
+} else {
+    alert("Sorry, your browser does not support Web Storage");
+    $('.panel-group .panel').fadeIn(200);
+}
+});
+</script>
+
+<!-- shows save / load confirmation -->
+<script>
+function confirmsaveload(intention){
+    $('#confirmsave,#confirmload').hide();
+    $('.panel-group .panel').fadeOut(200);
+    setTimeout(function(){$('#confirm'+intention).fadeIn(200);}, 220);
+}
+function cancelsaveload(intention){
+    $('#confirm'+intention).fadeOut(200);
+    setTimeout(function(){$('.panel-group .panel').fadeIn(200);}, 220);
+}
+</script>
+
+<!-- ajax to preview / download site -->
+<script>
+    $('#testbtn, #downloadbtn').click(function() {
+        var style = $('#orgfontstyle').text() + $('#showfontstyle').text() + $('#bodyfontstyle').text() + 
+            $('#shadow').text() + $('#fontweight').text() + $('#textcase').text() + $('#navsecactive').text()+ $('#fontsizestyle').text()
+        if ($("#gradientback").is(':checked')){
+               var background = $('#backvalue').text()}
+        else if ($('#custimage').val() == false) {var background = "https://i.imgur.com/Ik17LYf.jpg"}
+        else{var background = $('#custimage').val().replace('http://',"https://")}
+        if ($("#gradientbar").is(':checked')){
+               var barcolor = $('#barcolor').text()}
+        else{var barcolor = 'background-color:'+$('.color-box').css('background-color')};
+        if ($('#toggle-event').is(":checked"))
+            var eventstatus = 'true'
+        else var eventstatus = 'false'
+        if ($('#toggle-map').is(":checked"))
+            var mapstatus = 'true'
+        else var mapstatus = 'false'
+        $.post ("{{ url_for('convert') }}", {
+            downloadstatus: this.id,
+            style: style,
+            logo: $('#bicon').attr('class'),
+            background: background,
+            orgfont: $('#orgfont')[0].outerHTML,
+            showfont: $('#showfont')[0].outerHTML,
+            bodyfont: $('#bodyfont')[0].outerHTML,
+            butthov: $('#butthov').val(),
+            logocolor: $('#bicon').css('color'),
+            barcolor: barcolor,
+            buttoncolor: $('.color-box-btns').css('background-color'),
+            navbartext: $('.navbar-brand').css('color'),
+            introtextcolor: $('.color-box-introtext').css('background-color'),
+            aboutback: sectionback('#about'),
+            eventsback: sectionback('#events'),
+            contactback: sectionback('#contact'),
+            contacticons: $('.contactboxes i').css('color'),
+            linkcolor: $('.color-box-link').css('background-color'),
+            mapcoords: $('#latitude').val()+','+$('#longitude').val(),
+            twitter: $('#twit').val(),
+            facebook: $('#faceb').val(),
+            youtube: $('#yout').val(),
+            orgname: $("#orgname").text(),
+            navabout: $(".summernote").code(),
+            navevents: $(".summernote").eq(1).code(),
+            navcontact: $(".summernote").eq(2).code(),
+            introtext: $(".summernote").eq(3).code(),
+            abouthead: $(".summernote").eq(4).code(),
+            aboutsub: $(".summernote").eq(5).code(),
+            aboutcont: $(".summernote").eq(6).code(),
+            eventhead: $(".summernote").eq(7).code(),
+            contacthead: $(".summernote").eq(8).code(),
+            phone: $(".summernote").eq(9).code(),
+            address: $(".summernote").eq(10).code(),
+            email: $(".summernote").eq(11).code(),
+            copyright: $("#orgnamecopyright").text(),
+            mandrill_api: $('#mandrill_api').val(),
+            stripepk: $('#stripepk').val(),
+            cal_api: $('#cal_api').val(),
+            cal_id: $('#cal_id').val(),
+            eventstatus: eventstatus,
+            mapstatus: mapstatus
+        }, function(data) {
+            $('#preview').replaceWith("<iframe id='preview' class='modal-dialog' src="+data.url+"></iframe>");
+            $(data.modal).modal('show');
+        });
+    });
+</script>
+
+<!-- ajax to add contact info to database -->
+<script>
+    function addcontact(val1,val2,resultid) {
+      $.ajax ({
+        type: "POST",
+        url: "{{ url_for('sitebuildercontactinfo') }}",
+        global: false,
+        data: {email: $(val1).val(), siteurl: $(val2).val()}
+      }).done(function(data) {
+        if (data.result=='error1'){
+          $('#'+resultid).replaceWith("<p id='"+resultid+"' class='submiterror'>Please make sure you have entered values in each field.</p>");
+          }
+        else if (data.result=='error2'){
+          $('#'+resultid).replaceWith("<p id='"+resultid+"' class='submiterror'>Please make sure your email address is properly formatted and in the correct field.</p>");
+          }
+        else{
+          $('#'+resultid).replaceWith("<p id='"+resultid+"' class='submitsuccess'>Thank you! Your contact information has been added.</p>");
+          }
+        });
+    };
+</script>
+
+<!-- change body font size -->
+<script>
+$(function() {
+    $('#minus, #plus').click(function() {
+        if (this.id=='minus'){
+            var aboutp = Number($('#about p').css("font-size").replace("px","")) -1
+            var contactp = Number($('.contactboxes p').css("font-size").replace("px","")) -1
+            var subhead = Number($('.section-subheading').css("font-size").replace("px","")) -1
+            var form = Number($('section#contact .form-group input').css("font-size").replace("px","")) -1}
+        else{
+            var aboutp = Number($('#about p').css("font-size").replace("px","")) +1
+            var contactp = Number($('.contactboxes p').css("font-size").replace("px","")) +1
+            var subhead = Number($('.section-subheading').css("font-size").replace("px","")) +1
+            var form = Number($('section#contact .form-group input').css("font-size").replace("px","")) +1}
+        $('#fontsizestyle').replaceWith("<style id='fontsizestyle'>#about p{font-size:"+ aboutp +"px}.contactboxes p{font-size:"+ contactp +"px;line-height:1.2}section h3.section-subheading{margin-bottom:35px;text-transform:none;font-size:"+ subhead +"px;font-style:italic;font-weight:400}section#contact .form-group input,section#contact .form-group textarea{padding:20px;font-size:"+ form +"px;background:rgba(40,40,40,0.85);color:#D1D1D1}</style>");
+    })
+});
+</script>
+
+<!-- refresh background image -->
+<script>
+$(function() {
+    $('#testimage').click(function() {
+        img = $('#custimage').val().replace("http:","https:");
+        try {
+            $.backstretch(img);
+        } catch (e) {
+            alert(e);
+        }
+    });
+});
+</script>
+
+<!-- hides/shows/expands options panel -->
+<script>
+    $('#optionstoggle').click(function() {
+        $('#right-panel-link').click();
+        $('#optionsicon').fadeOut();
+        setTimeout(function(){$('#expandicon,#closeicon').fadeIn(200)}, 220);
+    });
+    $('#closetoggle').click(function() {
+        $('#right-panel-link').click();
+        $('#closeicon,#expandicon').hide();
+        setTimeout(function(){$('#optionsicon').fadeIn(200)}, 220);
+    });
+    $('#expandtoggle').click(function() {
+        $('#right-panel').animate({width: "500px"}, 300 );
+        $('body').animate({marginLeft: "-500px"}, 300 );
+        $('#closeicon,#expandicon').animate({right: "499px"}, 300 );
+        $('#expandtoggle').hide()
+        $('#collapsetoggle').show()
+        $('#right-panel .panel-body p').css('text-align','left')
+
+    });
+    $('#collapsetoggle').click(function() {
+        $('#right-panel').animate({width: "280px"}, 300 );
+        $('body').animate({marginLeft: "-280px"}, 300 );
+        $('#closeicon,#expandicon').animate({right: "280px"}, 300 );
+        $('#collapsetoggle').hide()
+        $('#expandtoggle').show()
+        $('#right-panel .panel-body p').css('text-align','center')
+    });
+</script>
+
+<!-- Initiate tooltips / collapse -->
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+  $('#accordion').collapse();
+});
+</script>
+
+<!-- load modal images on show -->
+<script>
+$(document).ready(function(){
+    $('#MandrillModal').on('shown.bs.modal', function (e) {
+        $("#img1").backstretch("/static/img/mandrill1.gif");
+        $("#img2").backstretch("/static/img/mandrill2.gif");
+        $("#img3").backstretch("/static/img/mandrill3.gif");
+    });
+    $('#CloudinaryModal').on('shown.bs.modal', function (e) {
+        $("#cloudinaryimg").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421085733/cloudinaryurl.jpg");
+    });
+    $('#GitHubModal').on('shown.bs.modal', function (e) {
+        $("#reposetup").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421094960/reposetup.png");
+        $("#reponewfile").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421094728/reponewfile.png");
+        $("#repopastehtml").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421095282/pastehtml.png");
+    });
+    $('#DotComModal').on('shown.bs.modal', function (e) {
+        $("#reposetup2").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421094960/reposetup.png");
+        $("#reponewfile2").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421094728/reponewfile.png");
+        $("#repopastehtml2").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421095282/pastehtml.png");
+        $("#repocname").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421639367/repo_cname.png");
+        $("#namecheaphostrecords").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421638750/all_host_records.png");
+        $("#namecheapdns").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421638623/dns_settings.png");
+    });
+});
+</script>
+
+<!-- lightens / darkens text color to suit background -->
+<script>
+$.fn.contrastColor = function() {
+    return this.each(function() {
+        var bg = $(this).css('background-color');
+        //use first opaque parent bg if element is transparent
+        if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') { 
+            $(this).parents().each(function(){
+                bg = $(this).css('background-color')
+                if(bg != 'transparent' && bg != 'rgba(0, 0, 0, 0)') return false; 
+            });
+            //exit if all parents are transparent
+            if(bg == 'transparent' || bg == 'rgba(0, 0, 0, 0)') return false;
+        }
+        //get r,g,b and decide
+        var rgb = bg.replace(/^(rgb|rgba)\(/,'').replace(/\)$/,'').replace(/\s/g,'').split(',');
+        var yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
+        if(yiq >= 128) $(this).removeClass('light-color');
+        else $(this).addClass('light-color');
+    });
+};
+</script>
+
+<!-- Color picker stuff -->
+<script>
+    $('.color-box').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'222222',
+    onChange:function(hsb,hex,rgb,el) {
+         $('#barhex').val(hex);
+         $('.color-box').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.95)');
+         $('#barcolorstyle').replaceWith('<style id="barcolorstyle">.navbar-default, .navbar-default.navbar-shrink, .navbar-default .navbar-toggle .icon-bar{background-color:rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.95)}</style>')
+    }
+})
+.css('background-color', 'rgba(22,22,22,0.95)');
+</script>
+<script>
+    var colorboxbartext = $('.color-box-bartext')
+    var elemgroup1 = $('.navbar-brand, .nav li a, .navbar-default .navbar-nav > .active > a')
+    var elemgroup2 = $('.navbar-default .navbar-toggle')
+    var bartexthex = $('#bartexthex')
+    colorboxbartext.colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'FA4747',
+    onChange:function(hsb,hex,rgb,el) {
+         bartexthex.val(hex);
+         elemgroup1.css('color','#'+hex);
+         colorboxbartext.css('background-color','#'+hex).contrastColor();
+         elemgroup2.css('background-color','#'+hex);
+    }
+})
+    .css('background-color', '#FA4747').contrastColor();
+</script>
+<script>
+    $('.color-box-introtext').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'FA4747',
+    onChange:function(hsb,hex,rgb,el) {
+        $('#introtexthex').val(hex);
+         $('.intro-heading').css('color','#'+hex);
+         $('.color-box-introtext').css('background-color','#'+hex).contrastColor();
+    }
+})
+.css('background-color', '#FA4747').contrastColor();
+</script>
+<script>
+    $('.color-box-bicon').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'46c24a',
+    onChange:function(hsb,hex,rgb,el) {
+        $('#biconhex').val(hex);
+         $('#bicon').css('color','#'+hex);
+         $('.color-box-bicon').css('background-color','#'+hex).contrastColor();
+    }
+})
+.css('background-color', '#46c24a');
+</script>
+<script>
+$(function(){
+    var colorboxnavhighlight = $('.color-box-navhighlight')
+    var navhighlighthex = $('#navhighlighthex')
+    colorboxnavhighlight.colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'fed136',
+    onShow:function(){$('#closetoggle').click()},
+    onHide:function(){
+        sectionhighlight(navhighlighthex.val())},
+    onChange:function(hsb,hex,rgb,el) {
+        var elemgroup1 = $('.navbar-default .navbar-brand:hover,.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:active,.navbar-default .navbar-brand.active')
+        var elemgroup2 = $('.navbar-default .navbar-toggle:hover,.navbar-default .navbar-toggle:focus,.navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav > .active > a:hover,.navbar-default .navbar-nav > .active > a:focus')
+        navhighlighthex.val(hex);
+        elemgroup1.css('color','#'+hex)
+        elemgroup2.css('background-color','#'+hex)
+        colorboxnavhighlight.css('background-color','#'+hex).contrastColor();
+        }
+    })
+    .css('background-color', '#fed136');
+})
+</script>
+
+<script>
+    var colorboxbtns = $('.color-box-btns');
+    var btnshex = $('#btnshex');
+    var btny = $('.btny');
+    colorboxbtns.colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'fed136',
+    onChange:function(hsb,hex,rgb,el) {
+        btnshex.val(hex);
+        btny.css('background-color','#'+hex);
+        colorboxbtns.css('background-color','#'+hex).contrastColor();
+    }
+})
+.css('background-color', '#fed136');
+</script>
+<script>
+    var colorboxbtnsecond = $('.color-box-btnsecond')
+    var btnsecondhex = $('#btnsecondhex')
+    var btn2 = $(".btn-2")
+    var butthov = $('#butthov')
+    colorboxbtnsecond.colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'a17f12',
+    onChange:function(hsb,hex,rgb,el) {
+         btnsecondhex.val(hex);
+         colorboxbtnsecond.css('background-color','#'+hex).contrastColor();
+         btn2.css("box-shadow", "0 4px #"+hex)
+         butthov.val(".btn-2 {box-shadow: 0 4px #"+hex+";}.btn-2:hover{box-shadow:0 5px #"+hex+";top:-1px}.btn-2:active{box-shadow:none;top:4px}");
+     }
+})
+.css('background-color', '#a17f12');
+</script>
+<script>
+    $('.color-box-about-tint').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'ededed',
+    onShow:function(){
+        destroygradient('about')
+    },
+    onChange:function(hsb,hex,rgb,el) {
+        $('#abouthex').val(hex);
+         $('#about').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.75)');
+         $('.color-box-about-tint').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.75)').contrastColor();
+    }
+})
+.css('background-color', 'rgba(237, 237, 237, 0.75)');
+</script>
+<script>
+    $('.color-box-events-tint').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'eb283f',
+    onShow:function(){
+        destroygradient('events')
+    },
+    onChange:function(hsb,hex,rgb,el) {
+        $('#eventhex').val(hex);
+         $('#events').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.75)');
+         $('.color-box-events-tint').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.75)').contrastColor();
+    }
+})
+.css('background-color', 'rgba(235,40,63,0.75)');
+</script>
+<script>
+    $('.color-box-contact-tint').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'0B1233',
+    onShow:function(){
+        destroygradient('contact')
+    },
+    onChange:function(hsb,hex,rgb,el) {
+        $('#contacthex').val(hex);
+         $('#contact').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.75)');
+         $('.color-box-contact-tint').css('background-color','rgba('+rgb.r+','+rgb.g+','+rgb.b+',0.75)').contrastColor();
+    }
+})
+.css('background-color', 'rgba(11,18,51,0.75)').contrastColor();
+</script>
+<script>
+    $('.color-box-cicon').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'FA4747',
+    onChange:function(hsb,hex,rgb,el) {
+        $('#ciconhex').val(hex);
+         $('.contactboxes i').css('color','#'+hex);
+         $('.color-box-cicon').css('background-color','#'+hex).contrastColor();
+    }
+})
+.css('background-color', '#FA4747').contrastColor();
+</script>
+<script>
+    $('.color-box-link').colpick({
+    colorScheme:'dark',
+    layout:'hex',
+    submit:0,
+    color:'bd0f0f',
+    onChange:function(hsb,hex,rgb,el) {
+        $('#linkhex').val(hex);
+         $('#about a,a.fc-more').css('color','#'+hex);
+         $('.color-box-link').css('background-color','#'+hex).contrastColor();
+    }
+})
+.css('background-color', '#bd0f0f').contrastColor();
+</script>
+
+<!-- classie -->
+<script>
+    (function(e){"use strict";function t(e){return new RegExp("(^|\\s+)"+e+"(\\s+|$)")}function s(e,t){var s=n(e,t)?i:r;s(e,t)}var n,r,i;if("classList"in document.documentElement){n=function(e,t){return e.classList.contains(t)};r=function(e,t){e.classList.add(t)};i=function(e,t){e.classList.remove(t)}}else{n=function(e,n){return t(n).test(e.className)};r=function(e,t){if(!n(e,t)){e.className=e.className+" "+t}};i=function(e,n){e.className=e.className.replace(t(n)," ")}}var o={hasClass:n,addClass:r,removeClass:i,toggleClass:s,has:n,add:r,remove:i,toggle:s};if(typeof define==="function"&&define.amd){define(o)}else{e.classie=o}})(window)
+</script>
+
+
+<!-- animated header -->
+<script>
+    var cbpAnimatedHeader=function(){function i(){window.addEventListener("scroll",function(e){if(!n){n=true;setTimeout(s,250)}},false)}function s(){var e=o();if(e>=r){classie.add(t,"navbar-shrink");classie.remove(t,"navbar-transp")}else{classie.remove(t,"navbar-shrink");classie.add(t,"navbar-transp")}n=false}function o(){return window.pageYOffset||e.scrollTop}var e=document.documentElement,t=document.querySelector(".navbar-default"),n=false,r=100;i()}()
+</script>
+
+<!-- anchor page scroll -->
+<script>
+    $(function(){$("a.page-scroll").bind("click",function(e){var t=$(this);$("html, body").stop().animate({scrollTop:$(t.attr("href")).offset().top},1500,"easeInOutExpo");e.preventDefault()})});$("body").scrollspy({target:".navbar-fixed-top"});$(".navbar-collapse ul li a").click(function(){$(".navbar-toggle:visible").click()})
+</script>
+
+<!-- calendar events -->
+<script>
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        googleCalendarApiKey: 'AIzaSyAPuckwKCANTKg3IUh-v6MVZSFTf4PtXqs',
+        header:{left:"prev,next today",center:"title",right:"month,basicWeek"},
+        eventLimit:true,
+        height:520,
+        events: {
+            googleCalendarId: '57es5oqequihq1erb9dp1gr4sg@group.calendar.google.com',
+        },
+        eventClick: function(event) {
+        if (event.url) {
+            window.open(event.url);
+            return false;
+        }
+    }
+    });
+});
+</script>
+
+<!-- map settings -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3"></script>
+<script>
+    var marker;
+    var map;
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(39,-95);
+
+        $('#update-map').click(function(e) {
+            var lat = parseFloat(document.getElementById('latitude').value);
+            var lng = parseFloat(document.getElementById('longitude').value);
+            var newLatLng = new google.maps.LatLng(lat, lng);
+            marker.setPosition(newLatLng);
+            map.setCenter(newLatLng);
+        });
+
+        var myOptions = {
+            center: myLatlng,
+            zoom: 5,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            zoomControlOptions: {
+            position: google.maps.ControlPosition.RIGHT
+            },
+        };
+
+        map = new google.maps.Map(document.getElementById('map'), myOptions);
+
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            draggable: true,
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function(a) {
+            $('input[id="latitude"]').val(a.latLng.lat().toFixed(6));
+            $('input[id="longitude"]').val(a.latLng.lng().toFixed(6));
+            map.panTo(a.latLng);
+        });
+    }
+
+    function moveMarker() {
+        var lat = parseFloat(document.getElementById('latitude').value);
+        var lng = parseFloat(document.getElementById('longitude').value);
+        var newLatLng = new google.maps.LatLng(lat, lng);
+
+        marker.setPosition(newLatLng);
+        map.setCenter(newLatLng);
+    }
+
+    $(document).ready(function() {
+        initialize();
+    });
+</script>
+
+<!-- update map marker to current location -->
+<script>
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        alert("Geolocation is not supported by this browser");
+    }
+}
+function showPosition(position) {
+    $('#latitude').val(position.coords.latitude);
+    $('#longitude').val(position.coords.longitude);
+    $('#update-map').click();
+}
+</script>
+
+<!-- text editor -->
+ <script>
+    $(function() {
+      $('.summernote').summernote({
+        airMode: true,
+        airPopover: [
+            ['color', ['color']],
+            ['font', ['bold', 'underline', 'italic', 'clear']],
+            ['para', ['paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'video', 'picture']]
+          ],
+          onblur: function(e) {
+          $('.note-link-popover').hide();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
