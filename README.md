@@ -1,7 +1,7 @@
 Nonprofit Website Builder
 ----------------------------
 
-[Try it here](https://henrygd.me/makeasite)
+[Try it here](https://henrygd.me/makeawebsite)
 
 Allows a user to make their own website that can accept donations.
 
