@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,9 +27,8 @@
     <link id='showfont' href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link id="bodyfont" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
 
-    <!-- jQuery / Backstretch / Calendar / Summernote -->
+    <!-- jQuery / Calendar / Summernote -->
     <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.3/fullcalendar.min.js"></script>
     <script src="static/js/gcal.js"></script>
@@ -112,7 +110,7 @@
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
                     <div class="summernote"><p>Write a bit about your organization and the work you do. Try highlighting a bit of text here to bring up a window with more options. You can center this text, change the color, insert an image, embed a video, and more! If the window doesn't close, just press escape. If you make a mistake, right click the text and select 'undo.' If you find any bugs, have any suggestions that might make this tool more useful, or just want to say hello, send me a message via the contact form below.</p>
-                    <p>Want to insert an image? Please make sure it's optimized for the web before doing so. You can use <a href="http://www.ico2png.com/jpeg-optimizer/">this site</a> or <a href="http://www.jpeg-optimizer.com/">this site</a>.</p></div>
+                    <p>Want to insert an image here? Please follow <a href="" style="cursor:pointer" data-toggle="modal" data-target="#CloudinaryModal">these instructions</a> to optimize it and upload it to Cloudinary. When pasting the link, make sure to change the beginning to <code>https://</code> rather than <code>http://</code> or your site will have issues. Also make sure to resize the image using only the percentage buttons so it will scale up and down to fit all screen widths. </p></div>
                 </div>
             </div>
         </div>
@@ -268,7 +266,7 @@
         <p>To get things started, enter the name of your organization in the field below and click the button underneath to choose a logo (top left). You can change the color later. From there, you may start wherever you'd like. Edit the text to the left, or check out the other options panels below this one.</p>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-users"></i></span>
-            <input type="text" class="form-control" id='orgnameinput' placeholder="Your organization">
+            <input type="text" class="form-control" id='orgnameinput' placeholder="Your organization" maxlength="28">
         </div>
         <button class="btn btn-xl" data-toggle="modal" data-target="#iconModal" style="margin-top:2px">Choose Logo</button>
       </div>
@@ -650,10 +648,10 @@
         <p>We will use <a href="https://stripe.com/">Stripe</a> as the donation processor. Stripe has no history of shady behavior, no monthly fees,
          and the <a href="https://stripe.com/us/pricing">percentage cost per transaction</a> is very reasonable. They are also developer friendly,
          which means we can allow users to pay through a slick, straightforward, custom interface without ever leaving the site.</p>
-         <p>You will have to enter your website address when signing up. If you don't want to use a .com or .org domain ($10 to $12/year), sign at <a href="https://github.com/">GitHub.com</a> using your organization name as your username, then enter 
+         <p>You will have to enter your website address when signing up. If you don't want to use a .com or .org domain ($10 to $12/year), sign up at <a href="https://github.com/">GitHub.com</a> using your organization name as your username, then enter 
          <code>https://you.github.io</code> on Stripe- replacing <code>you</code> with your GitHub username.</p>
          <p class="highlight">If you do want to buy a .com or .org (I strongly recommend doing so),
-         <a href="https://www.namecheap.com/?aff=77472">Namecheap</a> is the best option, and is what I use. Click the link, search for your domain, buy it, and use your new address for the Stripe sign up. Setting up your new domain through Namecheap is easy and I will walk you through it later!</p>
+         <a href="https://www.namecheap.com/?aff=77472">Namecheap</a> is what I use. Click the link, search for your domain, buy it, and use your new address for the Stripe sign up. Setting up your new domain through Namecheap is easy and I will walk you through it later!</p>
         <p>After you've signed up on Stripe, copy your publishable API key (not the test keys or the secret key) and paste in the field below. Make sure it is the LIVE PUBLISHABLE KEY (matches the format below) or donations WILL NOT WORK.</p>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-key"></i></span>
@@ -883,11 +881,11 @@
         <p>Please enter your email address in the first field and website URL in the second field below. This gives me a way to contact you with information and instructions so you can update your site if something no longer works.</p>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-o "></i></span>
-            <input type="text" class="form-control" id='usergithubemail' placeholder="you@you.com">
+            <input type="text" class="form-control" id='usergithubemail' placeholder="you@you.com" maxlength="60">
         </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-link"></i></span>
-            <input type="text" class="form-control" id='usergithubsite' placeholder="yourusername.github.io">
+            <input type="text" class="form-control" id='usergithubsite' placeholder="yourusername.github.io" maxlength="60">
         </div>
         <button class="btn submitemail" onclick="addcontact('#usergithubemail','#usergithubsite','result1')">Submit</button>
         <p id="result1"></p>
@@ -907,7 +905,13 @@
       <div class="modal-body">
         <p>If you haven't already, register your .com or .org site at <a href="https://www.namecheap.com/?aff=77472">Namecheap</a>.
         <p>Now <a href="https://github.com/">sign up at GitHub</a> (free) using your organization name as your username. Check your email and verify your account -- this is required to publish your site.</p>
-        <p>In the upper-right corner of any GitHub page, click +, and then click "New repository."</p>
+        <div id="namecheaphostrecords" style="height:93px!important;width:241px!important;float:left;margin: 10px 10px 0 5px;"></div>
+        <p>Head over to Namecheap and find the "All Host Records" options page for your domain. At the time of this writing, you can hover over your username in the top bar, click "Manage Domains", click your website, and find <strong>All Host Records</strong> on the left. But Namecheap will soon be updating their layout, so it may be different for you.</p>
+        <p>Set the <code>@</code> row's <strong>IP ADDRESS/ URL</strong> field to <code>192.30.252.153</code> and add a second <code>@</code> row with <code>192.30.252.154</code> making sure both <strong>RECORD TYPE</strong> fields are set to <code>A (Address)</code></p>
+        <p>Set the <strong>www</strong> row's <strong>IP ADDRESS/ URL</strong> field to <code>you.github.io.</code> replacing <code>you</code> with your GitHub username. Don't forget the trailing period. Set the <strong>RECORD TYPE</strong> to <code>CNAME (Alias)</code></p>
+        <p>Compare your settings with the screenshot below, then click the 'save changes' button at the bottom.</p>
+        <div id="namecheapdns" style="width:669px;height:216px"></div>
+        <p>Now head back to GitHub. In the upper-right corner of any page, click +, and then click "New repository."</p>
         <p>Name your repository <code>you.github.io</code>, replacing <code>you</code> with your username as shown in the example below. Check "Initialize this repository with a README." Adding a description is optional.</p>
         <div id="reposetup2" style="width:669px;height:427px"></div>
         <p>On the next page, click the + shown below to add a new file.</p>
@@ -917,14 +921,16 @@
         <p>Click the + once again to add a second file.</p>
         <p>Name the file <code>CNAME</code> and in the larger area simply type the name of the website you registered at Namecheap in the format below. Click the button at the bottom to commit the file. (It says <code>you.org</code> but if you registered a .com it should obviously be changed to <code>you.com</code>, <code>you</code> being your own website.)</p>
         <div id="repocname" style="width:669px;height:138px"></div>
-        <div id="namecheaphostrecords" style="height:93px!important;width:241px!important;float:left;margin: 10px 10px 0 5px;"></div>
-        <p>Head over to Namecheap and find the "All Host Records" options page for your domain. At the time of this writing, you can hover over your username in the top bar, click "Manage Domains", click your website, and find "All Host Records" on the left. But Namecheap will soon be updating their layout, so it may be different for you.</p>
-        <p>Set the <code>@</code> row's <strong>IP ADDRESS/ URL</strong> field to <code>192.30.252.153</code> and add a second <code>@</code> row with <code>192.30.252.154</code> making sure both <strong>RECORD TYPE</strong> fields are set to <code>A (Address)</code></p>
-        <p>Set the <strong>www</strong> row's <strong>IP ADDRESS/ URL</strong> field to <code>you.github.io.</code> obviously replacing <code>you</code> with your GitHub username. Don't forget the trailing period. Set the <strong>RECORD TYPE</strong> to <code>CNAME (Alias)</code></p>
-        <p>Compare your settings with the screenshot below, then click the 'save changes' button at the bottom.</p>
-        <div id="namecheapdns" style="width:669px;height:216px"></div>
+        <p>Most of the hard work is done now. We just need to route the site through <a href="https://www.cloudflare.com">Cloudflare</a> because they provide free verified SSL certificates. So sign up, add your site as below, and wait for Cloudflare's scan to finish.</p>
+        <div id="cloudflare1" style="width:669px;height:40px"></div>
+        When the scan finishes, delete the <strong>A</strong> records and add one <strong>CNAME</strong> record that points to <code>you.github.io</code>. Enter one <strong>@</strong> symbol in the first field like below. After you add it, click the cloud to activate it if it's not already orange.
+        <div id="cloudflare2" style="width:669px;height:24px"></div>
+        Make sure you have no <strong>A</strong> records, and do have the two <strong>CNAME</strong> records as below. Any other records are also fine. If so, click through and use the default settings (free SSL should be on by default). Note the two DNS server addresses you are shown,
+        <div id="cloudflare3" style="width:669px;height:121px"></div>
+        Open a new tab or window and go back to Namecheap. Select your domain name again, and find the <strong>Transfer DNS to Webhost</strong> link on the left. On that page, paste in the two DNS addresses that Cloudflare displayed and save your changes. (The ones below are examples; yours will likely be different.)
+        <div id="cloudflare4" style="width:669px;height:394px"></div>
         <h4>Congratulations!</h4>
-        <p>It may take an hour or so for your site to show up (in the meantime a GitHub 404 page may show, this is normal), but it will soon be online at the URL you registered with Namecheap!</p>
+        <p>It may take up to an hour for your site to show up (in the meantime a GitHub 404 page may show, this is normal), but it will soon be online at the URL you registered with Namecheap!</p>
         <p>While waiting, I'd greatly appreciate if you'd star this tool on GitHub <a href="https://github.com/henrygd/Nonprofit-Website-Builder">at this page</a>.</p>
         <p>If you've waited over an hour, have verified your address, and your site still doesn't show, email me at hank@henrygd.me. I will do what I can to help.</p>
         <h4>Submit Your Site to Search Engines</h4>
@@ -935,11 +941,11 @@
         <p>Please enter your email address in the first field and website URL in the second field below. This gives me a way to contact you with information and instructions so you can update your site if something no longer works.</p>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-envelope-o "></i></span>
-            <input type="text" class="form-control" id='userdotcomemail' placeholder="you@you.com">
+            <input type="text" class="form-control" id='userdotcomemail' placeholder="you@you.com" maxlength="60">
         </div>
         <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-link"></i></span>
-            <input type="text" class="form-control" id='userdotcomsite' placeholder="you.org">
+            <input type="text" class="form-control" id='userdotcomsite' placeholder="you.org" maxlength="60">
         </div>
         <button class="btn submitemail" onclick="addcontact('#userdotcomemail','#userdotcomsite','result2')">Submit</button>
         <p id="result2"></p>
@@ -1482,6 +1488,7 @@
     <script>$('#hiModal').modal('show')</script>
 
     <!-- Plugin JavaScript -->
+    <script src="static/js/custom.backstretch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="static/js/jquery.panelslider.min.js"></script>
 
@@ -1600,7 +1607,7 @@
               addsectiongradient('#contact')
           }
         function addsectiongradient (section){
-            $(section).css('background-color','transparent').css('box-shadow','0px 0px 30px #000')
+            $(section).css('background-color','transparent').css('box-shadow','0px 0px 24px rgba(0,0,0,0.5)')
               .css('background','-webkit-linear-gradient(left, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
               .css('background','-moz-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
               .css('background','-ms-linear-gradient(90deg, rgba(' + first + ',0.75) 10%, rgba(' + second + ',0.75) 90%)')
@@ -1678,7 +1685,7 @@ function transparent (checkbox,section){
         $('#'+section).css('background-color','transparent').css('box-shadow','none');
     }
     else {
-        $('#'+section).css('background-color',notrasp).css('box-shadow','0px 0px 30px #000');
+        $('#'+section).css('background-color',notrasp).css('box-shadow','0px 0px 24px rgba(0,0,0,0.5)');
     }
 }
 </script>
@@ -2230,6 +2237,10 @@ $(document).ready(function(){
         $("#repocname").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421639367/repo_cname.png");
         $("#namecheaphostrecords").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421638750/all_host_records.png");
         $("#namecheapdns").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1421638623/dns_settings.png");
+        $("#cloudflare1").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1422580751/cloudflare.png");
+        $("#cloudflare2").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1422580751/cloudflare1.png");
+        $("#cloudflare3").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1422580751/cloudflare2.png");
+        $("#cloudflare4").backstretch("https://res.cloudinary.com/henrygd/image/upload/v1422580751/cloudflare3.png");
     });
 });
 </script>
